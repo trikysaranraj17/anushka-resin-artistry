@@ -91,8 +91,10 @@ export default function AdminLayout({
       </div>
 
       {/* Content Area */}
-      <main style={{ padding: '1rem', maxWidth: '1200px', margin: '0 auto' }}>
-        {children}
+      <main style={{ padding: '1rem', maxWidth: '100%', margin: '0 auto', overflowX: 'hidden' }}>
+        <div style={{ width: '100%' }}>
+          {children}
+        </div>
       </main>
     </div>
   )

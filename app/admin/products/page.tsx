@@ -93,24 +93,24 @@ export default function AdminProducts() {
 
   return (
     <div className="animate-fade-in">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '3rem' }}>
         <div>
-          <h1 className="glow-text" style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>Products Management</h1>
-          <p style={{ color: '#aaa' }}>Control your store's inventory and luxury collection.</p>
+          <h1 className="glow-text" style={{ fontSize: 'clamp(1.5rem, 5vw, 2.5rem)', marginBottom: '0.5rem' }}>Products Management</h1>
+          <p style={{ color: '#aaa', fontSize: '0.9rem' }}>Control your store's inventory and luxury collection.</p>
         </div>
         <button 
           onClick={() => setShowForm(!showForm)} 
           className="btn-solid-gold" 
-          style={{ padding: '0.8rem 1.5rem', fontSize: '1rem' }}
+          style={{ padding: '0.8rem 1.5rem', fontSize: '0.9rem', alignSelf: 'flex-start' }}
         >
           {showForm ? 'Close Form' : '+ Add New Product'}
         </button>
       </div>
 
       {showForm && (
-        <div className="glass" style={{ padding: '2.5rem', marginBottom: '3rem', animation: 'fade-in 0.3s ease' }}>
+        <div className="glass" style={{ padding: '1.5rem', marginBottom: '3rem', animation: 'fade-in 0.3s ease' }}>
           <h2 style={{ marginBottom: '2rem', color: 'var(--color-gold)' }}>Product Details</h2>
-          <form onSubmit={handleAddProduct} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+          <form onSubmit={handleAddProduct} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div>
                 <label style={{ display: 'block', marginBottom: '0.5rem' }}>Product Title</label>

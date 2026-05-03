@@ -1,14 +1,24 @@
-import Image from 'next/image'
+'use client'
+
+import { createClient } from '@/lib/supabase/client'
+import { useEffect, useState } from 'react'
 
 export default function Products() {
-  const products = [
-    { id: "1", title: "Ocean Wave Name Board", price: 1500, category: "Name Boards", image: "https://images.unsplash.com/photo-1600121848594-d8644e57abab?w=800" },
-    { id: "2", title: "Gold Flake Keychain", price: 250, category: "Keychains", image: "https://images.unsplash.com/photo-1599839619722-39751411ea63?w=800" },
-    { id: "3", title: "Botanical Pendant", price: 450, category: "Pendants", image: "https://images.unsplash.com/photo-1606041008023-472dfb5e530f?w=800" },
-    { id: "4", title: "Geode Wall Art", price: 3500, category: "Wall Hangings", image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=800" },
-    { id: "5", title: "Wedding Varmala Preservation", price: 5000, category: "Preservation", image: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=800" },
-    { id: "6", title: "Custom Resin Table", price: 0, category: "Tables", image: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=800" }
-  ]
+  const [products, setProducts] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+  const supabase = createClient()
+
+  useEffect(() => {
+    async function fetchProducts() {
+      const { data } = await supabase
+        .from('products')
+        .select('*')
+        .order('created_at', { ascending: false })
+      if (data) setProducts(data)
+      setLoading(false)
+    }
+    fetchProducts()
+  }, [])
 
   return (
     <div className="animate-fade-in">
@@ -39,21 +49,27 @@ export default function Products() {
 
         {/* Product Grid */}
         <div style={{ flex: 1, display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '3rem' }}>
-          {products.map((product) => (
-            <a href={`/products/${product.id}`} key={product.id} className="glass" style={{ display: 'block', borderRadius: '16px', overflow: 'hidden', group: 'hover' }}>
-              <div style={{ height: '320px', background: `url(${product.image}) center/cover`, transition: 'transform 0.5s ease' }} className="hover:scale-110"></div>
-              <div style={{ padding: '2rem' }}>
-                <p style={{ color: 'var(--color-gold)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.5rem' }}>{product.category}</p>
-                <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', fontFamily: 'var(--font-sans)', fontWeight: 600 }}>{product.title}</h3>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--color-gold)' }}>
-                    {product.price > 0 ? `₹${product.price.toLocaleString()}` : 'Custom Price'}
-                  </span>
-                  <span className="btn-gold" style={{ padding: '0.5rem 1.5rem', fontSize: '0.8rem' }}>View</span>
+          {loading ? (
+            <p style={{ gridColumn: '1/-1', textAlign: 'center' }}>Loading masterpieces...</p>
+          ) : products.length === 0 ? (
+            <p style={{ gridColumn: '1/-1', textAlign: 'center', color: '#666' }}>No products found. Add some from the Admin Panel!</p>
+          ) : (
+            products.map((product) => (
+              <a href={`/products/${product.id}`} key={product.id} className="glass" style={{ display: 'block', borderRadius: '16px', overflow: 'hidden' }}>
+                <div style={{ height: '320px', background: `url(${product.image_url}) center/cover`, transition: 'transform 0.5s ease' }} className="hover:scale-110"></div>
+                <div style={{ padding: '2rem' }}>
+                  <p style={{ color: 'var(--color-gold)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.5rem' }}>{product.category}</p>
+                  <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', fontFamily: 'var(--font-sans)', fontWeight: 600 }}>{product.title}</h3>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--color-gold)' }}>
+                      ₹{product.price.toLocaleString()}
+                    </span>
+                    <span className="btn-gold" style={{ padding: '0.5rem 1.5rem', fontSize: '0.8rem' }}>View</span>
+                  </div>
                 </div>
-              </div>
-            </a>
-          ))}
+              </a>
+            ))
+          )}
         </div>
       </div>
     </div>

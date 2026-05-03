@@ -54,7 +54,7 @@ export default function Home() {
             { title: 'Resin Tables', img: 'https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=600' },
             { title: 'Preservation Art', img: 'https://images.unsplash.com/photo-1606041008023-472dfb5e530f?w=600' }
           ].map((cat, idx) => (
-            <div key={idx} className="glass" style={{ padding: '0', overflow: 'hidden', group: 'hover' }}>
+            <div key={idx} className="glass" style={{ padding: '0', overflow: 'hidden' }}>
               <div style={{ height: '350px', background: `url(${cat.img}) center/cover`, transition: 'transform 0.7s ease' }} className="hover:scale-110"></div>
               <div style={{ padding: '2rem', textAlign: 'center', borderTop: '1px solid rgba(212,175,55,0.1)' }}>
                 <h3 style={{ marginBottom: '1rem', fontSize: '1.8rem' }}>{cat.title}</h3>

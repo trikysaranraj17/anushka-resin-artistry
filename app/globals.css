@@ -241,20 +241,25 @@ html, body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
-  background: rgba(5, 5, 5, 0.98);
-  backdrop-filter: blur(20px);
-  z-index: 1000;
+  background: #000000 !important;
+  z-index: 99999 !important;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
-  transform: translateX(100%);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 2.5rem;
+  transition: opacity 0.4s ease;
   visibility: hidden;
   opacity: 0;
+  pointer-events: none;
+}
+
+.mobile-nav-overlay.active {
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: all !important;
 }
 
 .admin-top-nav::-webkit-scrollbar {
@@ -285,11 +290,12 @@ table {
 }
 
 .mobile-nav-link {
-  font-size: 1.8rem;
-  font-family: var(--font-serif);
-  color: var(--color-white);
+  font-size: 2.2rem !important;
+  font-weight: 800 !important;
+  color: var(--color-gold) !important;
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
+  text-decoration: none;
 }
 
 .responsive-logo {

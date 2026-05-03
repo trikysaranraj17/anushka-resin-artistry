@@ -1,50 +1,59 @@
 export default function AdminDashboard() {
   return (
-    <div className="animate-fade-in">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
-        <div>
-          <h1 className="glow-text" style={{ fontSize: '2.5rem', marginBottom: '0.5rem', fontFamily: 'var(--font-sans)', letterSpacing: '2px' }}>Dashboard Overview</h1>
-          <p style={{ color: '#aaa' }}>Welcome back to the command center.</p>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      {/* Hero Card */}
+      <div style={{ 
+        background: 'linear-gradient(135deg, rgba(20,28,50,1) 0%, rgba(10,14,26,1) 100%)',
+        borderRadius: '24px',
+        padding: '4rem 2rem',
+        textAlign: 'center',
+        border: '1px solid rgba(255,255,255,0.05)',
+        boxShadow: '0 20px 40px rgba(0,0,0,0.4)'
+      }}>
+        <h2 style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '1rem', fontFamily: 'var(--font-serif)' }}>Dashboard</h2>
+        <p style={{ color: '#8892b0', fontSize: '1.1rem', marginBottom: '2.5rem' }}>Overview of your luxury resin artistry empire</p>
+        
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(76,175,80,0.1)', padding: '0.5rem 1.5rem', borderRadius: '30px', border: '1px solid #4CAF50' }}>
+          <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#4CAF50', boxShadow: '0 0 10px #4CAF50' }}></div>
+          <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#4CAF50', letterSpacing: '1px' }}>LIVE</span>
         </div>
-        <button className="btn-gold" style={{ padding: '0.5rem 1.5rem', fontSize: '0.9rem' }}>Generate Report</button>
       </div>
-      
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
-        {/* Stat Cards */}
+
+      {/* Stats Grid */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
         {[
-          { label: 'Total Products', value: '24', icon: '📦' },
-          { label: 'New Orders', value: '5', icon: '🛍️' },
-          { label: 'Custom Requests', value: '12', icon: '🎨' },
-          { label: 'Total Revenue', value: '₹45,000', icon: '💎' }
+          { label: 'TOTAL PRODUCTS', value: '24', icon: '🛍️' },
+          { label: 'TOTAL MEDIA', value: '28', icon: '📂' },
+          { label: 'NEW INQUIRIES', value: '05', icon: '✉️' }
         ].map((stat, idx) => (
-          <div key={idx} className="glass" style={{ padding: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative', overflow: 'hidden' }}>
-            <div style={{ position: 'absolute', right: '-20px', bottom: '-20px', fontSize: '6rem', opacity: 0.05, filter: 'grayscale(100%)' }}>
-              {stat.icon}
-            </div>
-            <div>
-              <h3 style={{ color: '#ccc', fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>{stat.label}</h3>
-              <p className="glow-text" style={{ fontSize: '2.5rem', fontWeight: 700 }}>{stat.value}</p>
-            </div>
+          <div key={idx} style={{ 
+            background: 'rgba(255,255,255,0.02)',
+            borderRadius: '24px',
+            padding: '3rem 2rem',
+            textAlign: 'center',
+            border: '1px solid rgba(255,255,255,0.05)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '1.5rem'
+          }}>
+            <div style={{ fontSize: '2.5rem' }}>{stat.icon}</div>
+            <div style={{ fontSize: '3rem', fontWeight: 800, color: '#D4AF37' }}>{stat.value}</div>
+            <div style={{ fontSize: '0.9rem', fontWeight: 700, letterSpacing: '2px', color: '#8892b0' }}>{stat.label}</div>
           </div>
         ))}
       </div>
 
-      <div style={{ marginTop: '4rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem' }}>
-        <div className="glass" style={{ padding: '2.5rem' }}>
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '2rem', borderBottom: '1px solid rgba(212,175,55,0.2)', paddingBottom: '1rem' }}>Recent Orders</h2>
-          <div style={{ color: '#888', textAlign: 'center', padding: '3rem 0' }}>
-            <div style={{ fontSize: '3rem', marginBottom: '1rem', opacity: 0.5 }}>📥</div>
-            <p>No recent orders found.</p>
-          </div>
-        </div>
-
-        <div className="glass" style={{ padding: '2.5rem' }}>
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '2rem', borderBottom: '1px solid rgba(212,175,55,0.2)', paddingBottom: '1rem' }}>Recent Custom Requests</h2>
-          <div style={{ color: '#888', textAlign: 'center', padding: '3rem 0' }}>
-            <div style={{ fontSize: '3rem', marginBottom: '1rem', opacity: 0.5 }}>✨</div>
-            <p>No new custom requests.</p>
-          </div>
-        </div>
+      {/* Recent Activity placeholder */}
+      <div style={{ 
+        background: 'rgba(255,255,255,0.01)',
+        borderRadius: '24px',
+        padding: '2rem',
+        border: '1px solid rgba(255,255,255,0.03)',
+        textAlign: 'center',
+        color: '#666'
+      }}>
+        System fully synchronized with Supabase cloud.
       </div>
     </div>
   )

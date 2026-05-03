@@ -290,11 +290,11 @@ table {
 }
 
 .mobile-nav-link {
-  font-size: 2.2rem !important;
-  font-weight: 800 !important;
+  font-size: 1.5rem !important; /* Smaller, cleaner font size */
+  font-weight: 600 !important;
   color: var(--color-gold) !important;
   text-transform: uppercase;
-  letter-spacing: 4px;
+  letter-spacing: 2px;
   text-decoration: none;
 }
 

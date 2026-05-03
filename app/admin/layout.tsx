@@ -18,69 +18,82 @@ export default function AdminLayout({
   }
 
   const navItems = [
-    { name: 'Dashboard', path: '/admin' },
-    { name: 'Products', path: '/admin/products' },
-    { name: 'Orders', path: '/admin/orders' },
-    { name: 'Custom', path: '/admin/custom-orders' },
-    { name: 'Inquiries', path: '/admin/inquiries' },
-    { name: 'Media', path: '/admin/media' },
+    { name: 'Dashboard', path: '/admin', icon: '📊' },
+    { name: 'Products', path: '/admin/products', icon: '🛍️' },
+    { name: 'Media', path: '/admin/media', icon: '📂' },
+    { name: 'Inquiries', path: '/admin/inquiries', icon: '✉️' },
+    { name: 'Custom', path: '/admin/custom-orders', icon: '🎨' },
   ]
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--color-black)', color: 'white', display: 'flex', flexDirection: 'column' }}>
-      {/* Top Professional Admin Bar */}
-      <header className="glass" style={{ position: 'sticky', top: 0, zIndex: 1000, padding: '1rem 2rem', borderBottom: '1px solid var(--glass-border)', margin: '0' }}>
-        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <img src="/logo.png?v=3" alt="Logo" style={{ height: '40px' }} />
-            <div>
-              <h2 className="glow-text" style={{ fontSize: '1.2rem', margin: 0 }}>Anushka Admin</h2>
-            </div>
+    <div style={{ minHeight: '100vh', background: '#0a0e1a', color: 'white', fontFamily: 'var(--font-sans)' }}>
+      {/* Premium Admin Header */}
+      <header style={{ padding: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <div style={{ width: '45px', height: '45px', borderRadius: '50%', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+            <img src="/logo.png?v=3" alt="Logo" style={{ width: '80%' }} />
           </div>
+          <div>
+            <h1 style={{ fontSize: '1.2rem', margin: 0, fontWeight: 700, color: '#D4AF37' }}>Anushka Resin</h1>
+            <p style={{ fontSize: '0.7rem', margin: 0, opacity: 0.6, textTransform: 'uppercase', letterSpacing: '1px' }}>Admin Panel</p>
+          </div>
+        </div>
 
-          <nav style={{ display: 'flex', gap: '0.5rem', overflowX: 'auto', paddingBottom: '0.5rem' }} className="admin-top-nav">
-            {navItems.map((item) => (
-              <a 
-                key={item.path}
-                href={item.path} 
-                style={{ 
-                  padding: '0.6rem 1.2rem', 
-                  borderRadius: '30px', 
-                  fontSize: '0.9rem',
-                  whiteSpace: 'nowrap',
-                  background: pathname === item.path ? 'var(--color-gold)' : 'transparent',
-                  color: pathname === item.path ? 'var(--color-black)' : '#ccc',
-                  fontWeight: pathname === item.path ? 700 : 400,
-                  transition: 'all 0.3s'
-                }}
-              >
-                {item.name}
-              </a>
-            ))}
-          </nav>
-
-          <button onClick={handleSignOut} className="btn-gold" style={{ padding: '0.5rem 1.2rem', fontSize: '0.8rem' }}>
-            Sign Out
-          </button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+          <button onClick={handleSignOut} style={{ background: 'none', border: 'none', color: '#ccc', cursor: 'pointer', fontSize: '0.9rem' }}>Logout</button>
+          <div style={{ fontSize: '1.5rem', cursor: 'pointer' }}>🌙</div>
+          <div style={{ fontSize: '1.5rem', cursor: 'pointer' }}>☰</div>
         </div>
       </header>
 
-      {/* Content Area */}
-      <main className="container" style={{ padding: '3rem 1rem' }}>
-        <div className="animate-fade-in">
-          {children}
-        </div>
-      </main>
+      {/* Icon Navigation Bar */}
+      <div style={{ padding: '1.5rem', display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
+        {navItems.map((item) => (
+          <a 
+            key={item.path}
+            href={item.path}
+            style={{
+              width: '50px',
+              height: '50px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: pathname === item.path ? 'rgba(212,175,55,0.1)' : 'rgba(255,255,255,0.03)',
+              borderRadius: '12px',
+              border: pathname === item.path ? '1px solid #D4AF37' : '1px solid rgba(255,255,255,0.05)',
+              fontSize: '1.5rem',
+              transition: 'all 0.3s',
+              boxShadow: pathname === item.path ? '0 0 15px rgba(212,175,55,0.2)' : 'none'
+            }}
+            title={item.name}
+          >
+            {item.icon}
+          </a>
+        ))}
+        <button 
+          onClick={handleSignOut}
+          style={{
+            width: '50px',
+            height: '50px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: 'rgba(255,255,255,0.03)',
+            borderRadius: '12px',
+            border: '1px solid rgba(255,255,255,0.05)',
+            fontSize: '1.5rem',
+            cursor: 'pointer'
+          }}
+          title="Logout"
+        >
+          🚪
+        </button>
+      </div>
 
-      <style jsx>{`
-        .admin-top-nav::-webkit-scrollbar {
-          height: 4px;
-        }
-        .admin-top-nav::-webkit-scrollbar-thumb {
-          background: rgba(212, 175, 55, 0.3);
-          border-radius: 10px;
-        }
-      `}</style>
+      {/* Content Area */}
+      <main style={{ padding: '1rem', maxWidth: '1200px', margin: '0 auto' }}>
+        {children}
+      </main>
     </div>
   )
 }

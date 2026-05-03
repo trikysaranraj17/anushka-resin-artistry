@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation'
 
 export default function Footer() {
   const pathname = usePathname()
-  if (pathname.startsWith('/admin')) return null
+  if (pathname?.includes('/admin') || pathname?.includes('/login')) return null
   return (
     <footer style={{ backgroundColor: 'var(--color-gray)', padding: '4rem 0 2rem 0', marginTop: '4rem' }}>
       <div className="container">

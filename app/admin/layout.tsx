@@ -27,7 +27,7 @@ export default function AdminLayout({
   ]
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--color-black)', color: 'white' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--color-black)', color: 'white', display: 'flex', flexDirection: 'column' }}>
       {/* Top Professional Admin Bar */}
       <header className="glass" style={{ position: 'sticky', top: 0, zIndex: 1000, padding: '1rem 2rem', borderBottom: '1px solid var(--glass-border)', margin: '0' }}>
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>

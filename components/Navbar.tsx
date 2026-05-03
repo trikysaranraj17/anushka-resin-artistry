@@ -30,15 +30,25 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Toggle Button */}
-        <div className="mobile-menu-btn" onClick={() => setIsOpen(!isOpen)}>
+        <button 
+          className="mobile-menu-btn" 
+          onClick={() => {
+            console.log('Menu Toggled');
+            setIsOpen(!isOpen);
+          }}
+          style={{ background: 'none', border: 'none', padding: '10px' }}
+        >
           <span style={{ transform: isOpen ? 'rotate(45deg) translate(6px, 6px)' : 'none' }}></span>
           <span style={{ opacity: isOpen ? 0 : 1 }}></span>
           <span style={{ transform: isOpen ? 'rotate(-45deg) translate(6px, -6px)' : 'none' }}></span>
-        </div>
+        </button>
       </div>
 
       {/* Mobile Navigation Overlay */}
-      <div className={`mobile-nav-overlay ${isOpen ? 'active' : ''}`}>
+      <div 
+        className={`mobile-nav-overlay ${isOpen ? 'active' : ''}`}
+        style={{ zIndex: 9999 }}
+      >
         <a href="/" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Home</a>
         <a href="/products" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Shop</a>
         <a href="/gallery" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Gallery</a>

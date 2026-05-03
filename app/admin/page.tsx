@@ -29,7 +29,7 @@ export default function AdminDashboard() {
         ))}
       </div>
 
-      <div style={{ marginTop: '4rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
+      <div style={{ marginTop: '4rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem' }}>
         <div className="glass" style={{ padding: '2.5rem' }}>
           <h2 style={{ fontSize: '1.5rem', marginBottom: '2rem', borderBottom: '1px solid rgba(212,175,55,0.2)', paddingBottom: '1rem' }}>Recent Orders</h2>
           <div style={{ color: '#888', textAlign: 'center', padding: '3rem 0' }}>

@@ -37,7 +37,7 @@ export default function AdminInquiries() {
             <p>No inquiries found yet.</p>
           </div>
         ) : (
-          <div style={{ overflowX: 'auto' }}>
+          <div className="table-container">
             <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
               <thead>
                 <tr style={{ borderBottom: '1px solid rgba(212,175,55,0.2)' }}>

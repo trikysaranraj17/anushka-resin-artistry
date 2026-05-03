@@ -17,33 +17,33 @@ export default function AdminLayout({
   }
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--color-black)', backgroundImage: 'radial-gradient(circle at top right, rgba(212, 175, 55, 0.1), transparent 500px)' }}>
+    <div className="admin-container" style={{ background: 'var(--color-black)', backgroundImage: 'radial-gradient(circle at top right, rgba(212, 175, 55, 0.1), transparent 500px)' }}>
       {/* Admin Sidebar */}
-      <aside style={{ width: '280px', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '2rem', borderRight: '1px solid var(--glass-border)', background: 'var(--glass-bg)', backdropFilter: 'blur(16px)' }}>
+      <aside className="admin-sidebar">
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', borderBottom: '1px solid rgba(212,175,55,0.2)', paddingBottom: '2rem', textAlign: 'center' }}>
           <img src="/logo.png?v=3" alt="Anushka Resin Artistry Logo" style={{ height: '80px', filter: 'drop-shadow(0 0 10px rgba(212,175,55,0.3))' }} />
           <div>
-            <h2 className="glow-text" style={{ fontSize: '1.4rem', margin: 0, fontFamily: 'var(--font-serif)' }}>Anushka Resin Artistry</h2>
-            <p style={{ fontSize: '0.8rem', color: '#aaa', textTransform: 'uppercase', letterSpacing: '2px', marginTop: '0.5rem' }}>Admin Portal</p>
+            <h2 className="glow-text" style={{ fontSize: '1.2rem', margin: 0 }}>Anushka Resin</h2>
+            <p style={{ fontSize: '0.7rem', color: '#aaa', textTransform: 'uppercase', letterSpacing: '2px' }}>Admin</p>
           </div>
         </div>
         
         <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', flex: 1 }}>
-          <a href="/admin" className="glass" style={{ padding: '1rem', borderRadius: '8px', color: 'var(--color-gold)', fontWeight: 600 }}>Dashboard</a>
-          <a href="/admin/products" style={{ padding: '1rem', borderRadius: '8px', color: '#ccc', transition: 'all 0.3s' }} onMouseOver={(e) => e.currentTarget.style.background = 'rgba(212,175,55,0.1)'} onMouseOut={(e) => e.currentTarget.style.background = 'transparent'}>Products Management</a>
-          <a href="/admin/orders" style={{ padding: '1rem', borderRadius: '8px', color: '#ccc', transition: 'all 0.3s' }} onMouseOver={(e) => e.currentTarget.style.background = 'rgba(212,175,55,0.1)'} onMouseOut={(e) => e.currentTarget.style.background = 'transparent'}>Orders</a>
-          <a href="/admin/custom-orders" style={{ padding: '1rem', borderRadius: '8px', color: '#ccc', transition: 'all 0.3s' }} onMouseOver={(e) => e.currentTarget.style.background = 'rgba(212,175,55,0.1)'} onMouseOut={(e) => e.currentTarget.style.background = 'transparent'}>Custom Requests</a>
-          <a href="/admin/inquiries" style={{ padding: '1rem', borderRadius: '8px', color: '#ccc', transition: 'all 0.3s' }} onMouseOver={(e) => e.currentTarget.style.background = 'rgba(212,175,55,0.1)'} onMouseOut={(e) => e.currentTarget.style.background = 'transparent'}>Inquiries</a>
-          <a href="/admin/media" style={{ padding: '1rem', borderRadius: '8px', color: '#ccc', transition: 'all 0.3s' }} onMouseOver={(e) => e.currentTarget.style.background = 'rgba(212,175,55,0.1)'} onMouseOut={(e) => e.currentTarget.style.background = 'transparent'}>Media Center</a>
+          <a href="/admin" style={{ padding: '0.8rem', borderRadius: '8px', color: 'var(--color-gold)', fontWeight: 600 }}>Dashboard</a>
+          <a href="/admin/products" style={{ padding: '0.8rem', borderRadius: '8px', color: '#ccc' }}>Products</a>
+          <a href="/admin/orders" style={{ padding: '0.8rem', borderRadius: '8px', color: '#ccc' }}>Orders</a>
+          <a href="/admin/custom-orders" style={{ padding: '0.8rem', borderRadius: '8px', color: '#ccc' }}>Custom</a>
+          <a href="/admin/inquiries" style={{ padding: '0.8rem', borderRadius: '8px', color: '#ccc' }}>Inquiries</a>
+          <a href="/admin/media" style={{ padding: '0.8rem', borderRadius: '8px', color: '#ccc' }}>Media</a>
         </nav>
 
-        <button onClick={handleSignOut} className="btn-solid-gold" style={{ width: '100%' }}>
+        <button onClick={handleSignOut} className="btn-solid-gold" style={{ padding: '0.6rem 1rem', fontSize: '0.8rem' }}>
           Sign Out
         </button>
       </aside>
 
       {/* Admin Content */}
-      <main style={{ flex: 1, padding: '3rem', overflowY: 'auto' }}>
+      <main className="admin-main">
         {children}
       </main>
     </div>

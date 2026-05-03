@@ -1,9 +1,14 @@
 'use client'
 
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const pathname = usePathname()
+
+  // Hide Navbar in Admin pages
+  if (pathname.startsWith('/admin')) return null
 
   return (
     <nav className="glass" style={{ position: 'sticky', top: '1rem', zIndex: 100, padding: '1rem 2rem', margin: '1rem', borderRadius: '50px' }}>

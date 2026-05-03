@@ -257,64 +257,19 @@ html, body {
   opacity: 0;
 }
 
-.admin-container {
-  display: flex;
-  min-height: 100vh;
+.admin-top-nav::-webkit-scrollbar {
+  height: 4px;
+}
+.admin-top-nav::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.3);
+  border-radius: 10px;
 }
 
-.admin-sidebar {
-  width: 280px;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  border-right: 1px solid var(--glass-border);
-  background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  flex-shrink: 0;
-}
-
-.admin-main {
-  flex: 1;
-  padding: 3rem;
-  overflow-y: auto;
-}
-
-@media (max-width: 992px) {
-  .admin-container {
-    flex-direction: column;
-  }
-  .admin-sidebar {
+@media (max-width: 768px) {
+  .admin-top-nav {
     width: 100%;
-    border-right: none;
-    border-bottom: 1px solid var(--glass-border);
-    padding: 1.5rem;
-    flex-direction: row;
-    flex-wrap: wrap;
+    order: 3;
     justify-content: space-between;
-    align-items: center;
-  }
-  .admin-sidebar nav {
-    flex-direction: row !important;
-    overflow-x: auto;
-    width: 100%;
-    padding-bottom: 0.5rem;
-  }
-  .admin-sidebar nav a {
-    white-space: nowrap;
-    padding: 0.5rem 1rem !important;
-  }
-  .admin-sidebar > div:first-child {
-    flex-direction: row !important;
-    text-align: left !important;
-    padding-bottom: 0 !important;
-    border-bottom: none !important;
-  }
-  .admin-sidebar img {
-    height: 50px !important;
-  }
-  .admin-main {
-    padding: 1.5rem;
   }
 }
 

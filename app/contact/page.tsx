@@ -69,14 +69,14 @@ export default function Contact() {
   return (
     <div className="container animate-fade-in" style={{ padding: '6rem 0' }}>
       <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-        <h1 className="glow-text" style={{ fontSize: '4rem', marginBottom: '1rem', letterSpacing: '2px' }}>Contact Us</h1>
+        <h1 className="glow-text" style={{ marginBottom: '1rem', letterSpacing: '2px' }}>Contact Us</h1>
         <div style={{ width: '60px', height: '2px', background: 'var(--color-gold)', margin: '1rem auto' }}></div>
         <p style={{ color: '#aaa', fontSize: '1.2rem' }}>We'd love to hear from you</p>
       </div>
 
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4rem' }}>
         <div className="glass" style={{ flex: '1 1 400px', padding: '4rem' }}>
-          <h2 style={{ fontSize: '2rem', marginBottom: '2rem', color: 'var(--color-gold)' }}>Get In Touch</h2>
+          <h2 style={{ marginBottom: '2rem', color: 'var(--color-gold)' }}>Get In Touch</h2>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             <div>
@@ -103,7 +103,7 @@ export default function Contact() {
         </div>
 
         <div className="glass" style={{ flex: '1 1 400px', padding: '4rem' }}>
-          <h2 style={{ fontSize: '2rem', marginBottom: '2rem', color: 'var(--color-gold)' }}>Send a Message</h2>
+          <h2 style={{ marginBottom: '2rem', color: 'var(--color-gold)' }}>Send a Message</h2>
           <form onSubmit={(e) => { e.preventDefault(); handleSend(); }}>
             <div style={{ marginBottom: '1.5rem' }}>
               <label style={{ display: 'block', marginBottom: '0.5rem', color: '#ccc' }}>Name</label>

@@ -20,7 +20,7 @@ export default function Home() {
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 70%)', filter: 'blur(40px)', zIndex: 0, animation: 'pulse-glow 4s infinite alternate' }}></div>
         
         <div className="animate-fade-in" style={{ maxWidth: '900px', padding: '2rem', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <img src="/logo.png?v=3" alt="Anushka Resin Artistry Logo" style={{ width: '350px', height: 'auto', marginBottom: '2rem', filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.4))' }} />
+          <img src="/logo.png?v=3" alt="Anushka Resin Artistry Logo" className="responsive-logo" />
           
           <p style={{ fontSize: '1.5rem', marginBottom: '3rem', color: '#E0E0E0', fontFamily: 'var(--font-serif)', fontStyle: 'italic', letterSpacing: '2px' }}>
             Where liquid glass meets eternal elegance.

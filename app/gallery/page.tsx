@@ -23,7 +23,7 @@ export default function Gallery() {
   return (
     <div className="animate-fade-in" style={{ padding: '6rem 0' }}>
       <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-        <h1 className="glow-text" style={{ fontSize: '4rem', marginBottom: '1rem', letterSpacing: '2px', textTransform: 'uppercase' }}>Art Gallery</h1>
+        <h1 className="glow-text" style={{ marginBottom: '1rem', letterSpacing: '2px', textTransform: 'uppercase' }}>Art Gallery</h1>
         <div style={{ width: '60px', height: '2px', background: 'var(--color-gold)', margin: '1rem auto' }}></div>
         <p style={{ color: '#aaa', fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto' }}>
           A visual journey through our most exquisite custom resin creations and preserved memories.

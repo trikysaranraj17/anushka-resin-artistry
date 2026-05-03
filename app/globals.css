@@ -38,6 +38,25 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
+}
+
+h1 {
+  font-size: clamp(2.2rem, 8vw, 4rem);
+  color: var(--color-white);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  color: var(--color-white);
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+
+h3 {
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
   color: var(--color-white);
   font-weight: 600;
   margin-bottom: 1rem;
@@ -172,8 +191,12 @@ input:focus, textarea:focus, select:focus {
 
 /* Mobile responsive */
 @media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
   .container {
-    padding: 0 1.5rem;
+    padding: 0 1rem;
   }
   .desktop-nav {
     display: none !important;

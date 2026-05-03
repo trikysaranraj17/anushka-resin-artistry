@@ -43,7 +43,7 @@ export default function Home() {
       {/* Categories Section */}
       <section className="container">
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h2 style={{ fontSize: '3rem', textTransform: 'uppercase', letterSpacing: '4px' }}>Our <span className="text-gold">Galleries</span></h2>
+          <h2 style={{ textTransform: 'uppercase', letterSpacing: '4px' }}>Our <span className="text-gold">Galleries</span></h2>
           <div style={{ width: '60px', height: '2px', background: 'var(--color-gold)', margin: '1rem auto' }}></div>
           <p style={{ color: '#aaa', fontSize: '1.1rem' }}>Discover the perfect piece to elevate your space</p>
         </div>
@@ -57,7 +57,7 @@ export default function Home() {
             <div key={idx} className="glass" style={{ padding: '0', overflow: 'hidden' }}>
               <div style={{ height: '350px', background: `url(${cat.img}) center/cover`, transition: 'transform 0.7s ease' }} className="hover:scale-110"></div>
               <div style={{ padding: '2rem', textAlign: 'center', borderTop: '1px solid rgba(212,175,55,0.1)' }}>
-                <h3 style={{ marginBottom: '1rem', fontSize: '1.8rem' }}>{cat.title}</h3>
+                <h3 style={{ marginBottom: '1rem' }}>{cat.title}</h3>
                 <a href={`/products`} className="text-gold" style={{ fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 600 }}>
                   View Details
                 </a>
@@ -72,7 +72,7 @@ export default function Home() {
         <div style={{ position: 'absolute', inset: 0, background: 'url("https://images.unsplash.com/photo-1615800098779-1be32e60cca3?w=1200") center/cover', opacity: 0.1, zIndex: -1 }}></div>
         <div className="container glass" style={{ display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'center', padding: '4rem', border: '1px solid rgba(212,175,55,0.3)' }}>
           <div style={{ flex: '1 1 400px' }}>
-            <h2 className="glow-text" style={{ fontSize: '3.5rem', marginBottom: '1.5rem', lineHeight: 1.1 }}>Bring Your Vision to Life</h2>
+            <h2 className="glow-text" style={{ marginBottom: '1.5rem', lineHeight: 1.1 }}>Bring Your Vision to Life</h2>
             <p style={{ marginBottom: '2.5rem', fontSize: '1.2rem', color: '#ccc' }}>
               We specialize in custom orders. Choose your primary and secondary colors, specify your dimensions, and let us craft a masterpiece unique to you.
             </p>

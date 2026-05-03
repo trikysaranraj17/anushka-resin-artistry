@@ -9,8 +9,8 @@ export default function Navbar() {
     <nav className="glass" style={{ position: 'sticky', top: '1rem', zIndex: 100, padding: '1rem 2rem', margin: '1rem', borderRadius: '50px' }}>
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <img src="/logo.png?v=3" alt="Logo" style={{ height: '40px', filter: 'drop-shadow(0 0 5px rgba(212,175,55,0.5))' }} />
-          <span style={{ fontSize: '1.2rem', fontFamily: 'var(--font-serif)', fontWeight: 700 }} className="glow-text">
+          <img src="/logo.png?v=3" alt="Logo" style={{ height: '35px', filter: 'drop-shadow(0 0 5px rgba(212,175,55,0.5))' }} />
+          <span style={{ fontSize: 'clamp(0.9rem, 3vw, 1.2rem)', fontFamily: 'var(--font-serif)', fontWeight: 700 }} className="glow-text">
             Anushka Resin Artistry
           </span>
         </a>

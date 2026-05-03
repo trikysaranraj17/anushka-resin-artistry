@@ -86,11 +86,11 @@ export default function AdminMedia() {
   return (
     <div className="animate-fade-in">
       <div style={{ marginBottom: '3rem' }}>
-        <h1 className="glow-text" style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>Media Center</h1>
-        <p style={{ color: '#aaa' }}>Upload and manage images and videos for your gallery.</p>
+        <h1 className="glow-text" style={{ fontSize: 'clamp(1.5rem, 5vw, 2.5rem)', marginBottom: '0.5rem' }}>Media Center</h1>
+        <p style={{ color: '#aaa', fontSize: '0.9rem' }}>Upload and manage images and videos for your gallery.</p>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '3rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
         {/* Upload Form */}
         <div className="glass" style={{ padding: '2.5rem', height: 'fit-content' }}>
           <h2 style={{ marginBottom: '2rem', fontSize: '1.5rem', color: 'var(--color-gold)' }}>Upload New Media</h2>

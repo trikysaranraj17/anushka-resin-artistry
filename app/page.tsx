@@ -8,7 +8,8 @@ export default function Home() {
   const [settings, setSettings] = useState({
     hero_title: 'LIQUID LUXURY',
     hero_subtitle: 'Handcrafted resin masterpieces that redefine the boundaries of modern elegance.',
-    hero_video: 'https://cdn.shopify.com/videos/c/o/v/6f7c6f0d9c4e4b5f8c1e8b3b3b3b3b3b.mp4'
+    hero_video: 'https://cdn.shopify.com/videos/c/o/v/6f7c6f0d9c4e4b5f8c1e8b3b3b3b3b3b.mp4',
+    about_text: 'Every piece is hand-poured with industrial-grade premium resin, infused with raw pigments and 24k gold leaf accents.'
   })
   const supabase = createClient()
   useReveal()
@@ -16,7 +17,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchSettings() {
       const { data } = await supabase.from('site_config').select('*').single()
-      if (data) setSettings(data)
+      if (data) setSettings({ ...settings, ...data })
     }
     fetchSettings()
   }, [])
@@ -116,7 +117,7 @@ export default function Home() {
           <div className="reveal" style={{ paddingRight: '4rem' }}>
             <h2 className="text-gold" style={{ fontSize: '4rem', marginBottom: '3rem' }}>Pure <br/>Craftsmanship</h2>
             <p style={{ color: '#888', fontSize: '1.3rem', lineHeight: 2, marginBottom: '4rem' }}>
-              Every piece is hand-poured with industrial-grade premium resin, infused with raw pigments and 24k gold leaf accents.
+              {settings.about_text}
             </p>
             <a href="/custom-orders" className="btn-solid-gold">Start Your Commission</a>
           </div>

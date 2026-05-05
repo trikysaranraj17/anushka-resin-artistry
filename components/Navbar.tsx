@@ -84,25 +84,30 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Navigation Overlay */}
+      {/* Mobile Navigation Overlay - Flawless Version */}
       {isOpen && (
         <div 
           className="mobile-nav-overlay active"
-          style={{ background: 'rgba(5,5,5,0.98)', backdropFilter: 'blur(30px)', opacity: 1, visibility: 'visible', pointerEvents: 'all' }}
+          style={{ 
+            position: 'fixed', inset: 0, 
+            background: 'rgba(5,5,5,0.98)', 
+            backdropFilter: 'blur(30px)', 
+            zIndex: 3000,
+            display: 'flex', flexDirection: 'column',
+            alignItems: 'center', justifyContent: 'center',
+            gap: '2.5rem',
+            animation: 'fadeInUp 0.5s ease forwards'
+          }}
         >
-          <a href="/" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Home</a>
-          {['Collections', 'Gallery', 'Customization', 'Contact'].map((item) => (
-            <a 
-              key={item} 
-              href={item === 'Customization' ? '/custom-orders' : item === 'Collections' ? '/products' : `/${item.toLowerCase()}`} 
-              className="mobile-nav-link" 
-              onClick={() => setIsOpen(false)}
-              style={{ fontSize: '2.5rem', fontWeight: 800 }}
-            >
-              {item}
-            </a>
-          ))}
-          <a href="/admin" className="btn-solid-gold" style={{ marginTop: '3rem' }} onClick={() => setIsOpen(false)}>Admin Panel</a>
+          <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '3rem', right: '2rem', background: 'none', border: 'none', color: 'var(--color-gold)', fontSize: '2rem' }}>✕</button>
+          
+          <a href="/" className="mobile-nav-link" style={{ fontSize: '2rem', fontWeight: 800, letterSpacing: '4px' }} onClick={() => setIsOpen(false)}>HOME</a>
+          <a href="/products" className="mobile-nav-link" style={{ fontSize: '2rem', fontWeight: 800, letterSpacing: '4px' }} onClick={() => setIsOpen(false)}>COLLECTIONS</a>
+          <a href="/gallery" className="mobile-nav-link" style={{ fontSize: '2rem', fontWeight: 800, letterSpacing: '4px' }} onClick={() => setIsOpen(false)}>GALLERY</a>
+          <a href="/custom-orders" className="mobile-nav-link" style={{ fontSize: '2rem', fontWeight: 800, letterSpacing: '4px' }} onClick={() => setIsOpen(false)}>CUSTOMIZATION</a>
+          <a href="/contact" className="mobile-nav-link" style={{ fontSize: '2rem', fontWeight: 800, letterSpacing: '4px' }} onClick={() => setIsOpen(false)}>CONTACT</a>
+          
+          <a href="/admin" className="btn-solid-gold" style={{ marginTop: '2rem', width: '80%', textAlign: 'center' }} onClick={() => setIsOpen(false)}>ADMIN PANEL</a>
         </div>
       )}
     </>

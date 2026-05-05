@@ -1,9 +1,22 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
 
 export default function Footer() {
+  const [footerText, setFooterText] = useState('Crafting eternal elegance through liquid glass. Our resin masterpieces are designed to bring a touch of sophisticated luxury to modern spaces.')
   const pathname = usePathname()
+  const supabase = createClient()
+
+  useEffect(() => {
+    async function fetchFooter() {
+      const { data } = await supabase.from('site_config').select('footer_about').single()
+      if (data?.footer_about) setFooterText(data.footer_about)
+    }
+    fetchFooter()
+  }, [])
+
   if (pathname?.includes('/admin') || pathname?.includes('/login')) return null
 
   return (
@@ -17,7 +30,7 @@ export default function Footer() {
             <img src="/logo.png?v=3" alt="Logo" style={{ height: '80px', marginBottom: '3rem', filter: 'drop-shadow(0 0 15px rgba(212,175,55,0.3))' }} />
             <h2 style={{ fontSize: '2rem', letterSpacing: '8px', marginBottom: '1.5rem' }}>ANUSHKA</h2>
             <p style={{ color: '#666', fontSize: '1rem', lineHeight: 2, maxWidth: '450px' }}>
-              Crafting eternal elegance through liquid glass. Our resin masterpieces are designed to bring a touch of sophisticated luxury to modern spaces.
+              {footerText}
             </p>
           </div>
           

@@ -124,11 +124,13 @@ export default function AdminProducts() {
                 <div style={{ flex: 1 }}>
                   <label style={{ display: 'block', marginBottom: '0.5rem' }}>Category</label>
                   <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} style={{ backgroundColor: '#111', color: 'white' }}>
+                    <option value="MANDELA ART">Mandela Art</option>
+                    <option value="PENDANTS">Pendants</option>
+                    <option value="WALL CLOCKS">Wall Clocks</option>
+                    <option value="VARMALA PRESERVATION">Varmala Preservation</option>
                     <option value="Name Boards">Name Boards</option>
                     <option value="Tables">Resin Tables</option>
-                    <option value="Keychains">Keychains</option>
                     <option value="Wall Art">Wall Art</option>
-                    <option value="Preservation">Preservation Art</option>
                   </select>
                 </div>
               </div>

@@ -7,27 +7,27 @@ import useReveal from '@/hooks/useReveal'
 export default function Gallery() {
   const [media, setMedia] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
-  const supabase = createClient()
-  
-  useReveal()
-
   const [settings, setSettings] = useState({
     gallery_title: 'ART GALLERY',
     gallery_subtitle: 'A visual journey through our most exquisite custom resin creations and preserved memories.'
   })
-  const [loading, setLoading] = useState(true)
   const supabase = createClient()
   
   useReveal()
 
   useEffect(() => {
     async function fetchContent() {
-      const { data: config } = await supabase.from('site_config').select('gallery_title, gallery_subtitle').single()
-      if (config) setSettings(config)
-      
-      const { data } = await supabase.from('media_center').select('*').order('created_at', { ascending: false })
-      if (data) setMedia(data)
-      setLoading(false)
+      try {
+        const { data: config } = await supabase.from('site_config').select('gallery_title, gallery_subtitle').single()
+        if (config) setSettings(config)
+        
+        const { data } = await supabase.from('media_center').select('*').order('created_at', { ascending: false })
+        if (data) setMedia(data)
+      } catch (err) {
+        console.error('Gallery Fetch Error:', err)
+      } finally {
+        setLoading(false)
+      }
     }
     fetchContent()
   }, [])
@@ -48,7 +48,7 @@ export default function Gallery() {
         ) : media.length === 0 ? (
           <p style={{ textAlign: 'center', gridColumn: '1/-1', color: '#666' }}>Your gallery is empty. Upload media from the Admin Panel!</p>
         ) : (
-          media.map((item, idx) => (
+          media.map((item) => (
             <div key={item.id} className="reveal luxury-card" style={{ padding: 0, height: '450px', overflow: 'hidden', position: 'relative' }}>
               {item.type === 'image' ? (
                 <div className="img-zoom-container" style={{ width: '100%', height: '100%' }}>

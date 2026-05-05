@@ -26,6 +26,16 @@
   scroll-behavior: smooth;
 }
 
+a {
+  color: var(--color-gold);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: var(--color-gold-light);
+}
+
 body {
   background-color: var(--color-black);
   background-image: 

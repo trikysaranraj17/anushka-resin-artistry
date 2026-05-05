@@ -22,16 +22,18 @@ export default function Footer() {
           </div>
           
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h4 style={{ textTransform: 'uppercase', letterSpacing: '5px', fontSize: '0.9rem', marginBottom: '3rem', color: 'var(--color-gold)' }}>Collections</h4>
+            <h4 style={{ textTransform: 'uppercase', letterSpacing: '5px', fontSize: '0.9rem', marginBottom: '3rem', color: 'var(--color-gold)' }}>Explore</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              {['Wall Clocks', 'River Tables', 'Name Boards', 'Preservations'].map((item) => (
-                <a key={item} href="/products" className="nav-link" style={{ fontSize: '0.9rem', letterSpacing: '2px' }}>{item}</a>
-              ))}
+              <a href="/" className="nav-link" style={{ fontSize: '0.9rem', letterSpacing: '2px' }}>Home</a>
+              <a href="/products" className="nav-link" style={{ fontSize: '0.9rem', letterSpacing: '2px' }}>Collections</a>
+              <a href="/gallery" className="nav-link" style={{ fontSize: '0.9rem', letterSpacing: '2px' }}>Gallery</a>
+              <a href="/custom-orders" className="nav-link" style={{ fontSize: '0.9rem', letterSpacing: '2px' }}>Customization</a>
+              <a href="/contact" className="nav-link" style={{ fontSize: '0.9rem', letterSpacing: '2px' }}>Contact</a>
             </div>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h4 style={{ textTransform: 'uppercase', letterSpacing: '5px', fontSize: '0.9rem', marginBottom: '3rem', color: 'var(--color-gold)' }}>Experience</h4>
+            <h4 style={{ textTransform: 'uppercase', letterSpacing: '5px', fontSize: '0.9rem', marginBottom: '3rem', color: 'var(--color-gold)' }}>Contact</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', color: '#888', fontSize: '0.9rem', letterSpacing: '2px' }}>
               <p>Chennai, India</p>
               <p>+91 98407 06312</p>

@@ -2,6 +2,7 @@
 
 import { createClient } from '@/lib/supabase/client'
 import { useRouter, usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 export default function AdminLayout({
   children,
@@ -21,79 +22,62 @@ export default function AdminLayout({
     { name: 'Dashboard', path: '/admin', icon: '📊' },
     { name: 'Site Editor', path: '/admin/settings', icon: '⚙️' },
     { name: 'Products', path: '/admin/products', icon: '🛍️' },
-    { name: 'Media', path: '/admin/media', icon: '📂' },
-    { name: 'Inquiries', path: '/admin/inquiries', icon: '✉️' },
-    { name: 'Custom', path: '/admin/custom-orders', icon: '🎨' },
+    { name: 'Media Gallery', path: '/admin/media', icon: '📂' },
+    { name: 'Customer Inquiries', path: '/admin/inquiries', icon: '✉️' },
+    { name: 'Customization Requests', path: '/admin/custom-orders', icon: '🎨' },
   ]
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0a0e1a', color: 'white', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ minHeight: '100vh', background: '#050505', color: 'white', fontFamily: 'var(--font-sans)' }}>
       {/* Premium Admin Header */}
-      <header style={{ padding: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <div style={{ width: '45px', height: '45px', borderRadius: '50%', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-            <img src="/logo.png?v=3" alt="Logo" style={{ width: '80%' }} />
+      <header style={{ padding: '1.5rem 3rem', borderBottom: '1px solid rgba(212, 175, 55, 0.1)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#0a0a0a' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+          <div style={{ width: '50px', height: '50px', borderRadius: '12px', background: 'var(--gradient-gold)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '2px' }}>
+            <div style={{ background: '#000', width: '100%', height: '100%', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <img src="/logo.png?v=3" alt="Logo" style={{ width: '70%' }} />
+            </div>
           </div>
           <div>
-            <h1 style={{ fontSize: '1.2rem', margin: 0, fontWeight: 700, color: '#D4AF37' }}>Anushka Resin</h1>
-            <p style={{ fontSize: '0.7rem', margin: 0, opacity: 0.6, textTransform: 'uppercase', letterSpacing: '1px' }}>Admin Panel</p>
+            <h1 style={{ fontSize: '1.4rem', margin: 0, fontWeight: 800, letterSpacing: '2px' }} className="text-gold">ANUSHKA ADMIN</h1>
+            <p style={{ fontSize: '0.65rem', margin: 0, opacity: 0.5, textTransform: 'uppercase', letterSpacing: '2px' }}>Luxury Management Suite</p>
           </div>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-          <button onClick={handleSignOut} style={{ background: 'none', border: 'none', color: '#ccc', cursor: 'pointer', fontSize: '0.9rem' }}>Logout</button>
-          <div style={{ fontSize: '1.5rem', cursor: 'pointer' }}>🌙</div>
-          <div style={{ fontSize: '1.5rem', cursor: 'pointer' }}>☰</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
+          <button onClick={handleSignOut} className="btn-gold" style={{ padding: '0.6rem 1.5rem', fontSize: '0.7rem' }}>Log Out</button>
         </div>
       </header>
 
-      {/* Icon Navigation Bar */}
-      <div style={{ padding: '1.5rem', display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
+      {/* Modern Icon Navigation Bar */}
+      <div style={{ padding: '2rem', display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap', background: '#080808', borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
         {navItems.map((item) => (
-          <a 
+          <Link 
             key={item.path}
             href={item.path}
             style={{
-              width: '50px',
-              height: '50px',
+              width: '60px',
+              height: '60px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              background: pathname === item.path ? 'rgba(212,175,55,0.1)' : 'rgba(255,255,255,0.03)',
-              borderRadius: '12px',
-              border: pathname === item.path ? '1px solid #D4AF37' : '1px solid rgba(255,255,255,0.05)',
-              fontSize: '1.5rem',
-              transition: 'all 0.3s',
-              boxShadow: pathname === item.path ? '0 0 15px rgba(212,175,55,0.2)' : 'none'
+              background: pathname === item.path ? 'rgba(212,175,55,0.15)' : 'rgba(255,255,255,0.03)',
+              borderRadius: '16px',
+              border: pathname === item.path ? '1px solid var(--color-gold)' : '1px solid rgba(255,255,255,0.08)',
+              fontSize: '1.6rem',
+              transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+              boxShadow: pathname === item.path ? '0 0 20px rgba(212,175,55,0.2)' : 'none',
+              cursor: 'pointer'
             }}
             title={item.name}
           >
             {item.icon}
-          </a>
+          </Link>
         ))}
-        <button 
-          onClick={handleSignOut}
-          style={{
-            width: '50px',
-            height: '50px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: 'rgba(255,255,255,0.03)',
-            borderRadius: '12px',
-            border: '1px solid rgba(255,255,255,0.05)',
-            fontSize: '1.5rem',
-            cursor: 'pointer'
-          }}
-          title="Logout"
-        >
-          🚪
-        </button>
       </div>
 
       {/* Content Area */}
-      <main style={{ padding: '1rem', maxWidth: '100%', margin: '0 auto', overflowX: 'hidden' }}>
-        <div style={{ width: '100%' }}>
+      <main style={{ padding: '4rem 2rem', maxWidth: '1400px', margin: '0 auto', minHeight: '60vh' }}>
+        <div style={{ width: '100%', animation: 'fadeInUp 0.8s ease forwards' }}>
           {children}
         </div>
       </main>

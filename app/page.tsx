@@ -70,7 +70,7 @@ export default function Home() {
           </p>
           <div style={{ display: 'flex', gap: '2.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="/products" className="btn-solid-gold">Collections</a>
-            <a href="/custom-orders" className="btn-gold">Bespoke Art</a>
+            <a href="/custom-orders" className="btn-gold">Customization Art</a>
           </div>
         </div>
 

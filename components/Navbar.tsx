@@ -60,8 +60,9 @@ export default function Navbar() {
 
         {/* Desktop Navigation - Centered */}
         <div className="desktop-nav" style={{ display: 'flex', justifyContent: 'center', gap: '2.5rem' }}>
-          {['Collections', 'Gallery', 'Bespoke', 'Contact'].map((item) => (
-            <a key={item} href={item === 'Bespoke' ? '/custom-orders' : item === 'Collections' ? '/products' : `/${item.toLowerCase()}`} className="nav-link" style={{ fontWeight: 600 }}>
+          <a href="/" className="nav-link" style={{ fontWeight: 600 }}>Home</a>
+          {['Collections', 'Gallery', 'Customization', 'Contact'].map((item) => (
+            <a key={item} href={item === 'Customization' ? '/custom-orders' : item === 'Collections' ? '/products' : `/${item.toLowerCase()}`} className="nav-link" style={{ fontWeight: 600 }}>
               {item}
             </a>
           ))}
@@ -89,10 +90,11 @@ export default function Navbar() {
           className="mobile-nav-overlay active"
           style={{ background: 'rgba(5,5,5,0.98)', backdropFilter: 'blur(30px)', opacity: 1, visibility: 'visible', pointerEvents: 'all' }}
         >
-          {['Home', 'Collections', 'Gallery', 'Bespoke', 'Contact'].map((item) => (
+          <a href="/" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Home</a>
+          {['Collections', 'Gallery', 'Customization', 'Contact'].map((item) => (
             <a 
               key={item} 
-              href={item === 'Home' ? '/' : item === 'Bespoke' ? '/custom-orders' : item === 'Collections' ? '/products' : `/${item.toLowerCase()}`} 
+              href={item === 'Customization' ? '/custom-orders' : item === 'Collections' ? '/products' : `/${item.toLowerCase()}`} 
               className="mobile-nav-link" 
               onClick={() => setIsOpen(false)}
               style={{ fontSize: '2.5rem', fontWeight: 800 }}

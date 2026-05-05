@@ -5,8 +5,8 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'Anushka Resin Artistry | Luxury Resin Art',
-  description: 'High-end, modern, fully responsive luxury e-commerce for Anushka Resin Artistry. Handcrafted resin art, custom orders, and preservation art.',
+  title: 'ANUSHKA ARTISTRY | OFFICIAL SITE',
+  description: 'The pinnacle of luxury resin art. Handcrafted masterpieces, bespoke commissions, and floral preservation.',
 }
 
 export default function RootLayout({

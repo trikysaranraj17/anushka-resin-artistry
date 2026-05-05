@@ -91,6 +91,10 @@ h2 { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 600; margin-bottom: 1.5re
   transform: translateY(0);
 }
 
+.animate-fade-in {
+  animation: fadeInUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 /* Premium Buttons */
 .btn-gold {
   display: inline-block;

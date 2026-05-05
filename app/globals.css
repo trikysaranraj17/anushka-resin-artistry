@@ -38,16 +38,19 @@ a:hover {
 
 body {
   background-color: var(--color-black);
-  background-image: 
-    radial-gradient(circle at 10% 10%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 90% 90%, rgba(212, 175, 55, 0.08) 0%, transparent 40%);
-  background-attachment: fixed;
   color: var(--color-text);
   font-family: var(--font-sans);
   line-height: 1.8;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
-  overflow-x: hidden;
+  width: 100%;
+  overflow-x: hidden !important;
+  position: relative;
+}
+
+html {
+  overflow-x: hidden !important;
+  width: 100vw;
 }
 
 /* Custom Scrollbar */
@@ -179,8 +182,12 @@ h2 { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 600; margin-bottom: 1.5re
 }
 
 @media (max-width: 1024px) {
-  .desktop-nav { display: none; }
-  .mobile-menu-btn { display: flex; flex-direction: column; }
+  .desktop-nav { display: none !important; }
+  .mobile-menu-btn { display: flex !important; flex-direction: column; gap: 6px; cursor: pointer; }
+  .mobile-menu-btn span { width: 30px; height: 2px; background: var(--color-gold); }
+  h1 { font-size: 2.2rem !important; }
+  h2 { font-size: 1.6rem !important; }
+  p { font-size: 0.9rem !important; }
 }
 
 @media (min-width: 1025px) {

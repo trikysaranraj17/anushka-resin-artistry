@@ -11,25 +11,34 @@ export default function Gallery() {
   
   useReveal()
 
+  const [settings, setSettings] = useState({
+    gallery_title: 'ART GALLERY',
+    gallery_subtitle: 'A visual journey through our most exquisite custom resin creations and preserved memories.'
+  })
+  const [loading, setLoading] = useState(true)
+  const supabase = createClient()
+  
+  useReveal()
+
   useEffect(() => {
-    async function fetchMedia() {
-      const { data } = await supabase
-        .from('media_center')
-        .select('*')
-        .order('created_at', { ascending: false })
+    async function fetchContent() {
+      const { data: config } = await supabase.from('site_config').select('gallery_title, gallery_subtitle').single()
+      if (config) setSettings(config)
+      
+      const { data } = await supabase.from('media_center').select('*').order('created_at', { ascending: false })
       if (data) setMedia(data)
       setLoading(false)
     }
-    fetchMedia()
+    fetchContent()
   }, [])
 
   return (
     <div style={{ padding: '10rem 0' }}>
       <div className="reveal" style={{ textAlign: 'center', marginBottom: '6rem' }}>
-        <h1 style={{ marginBottom: '1.5rem', letterSpacing: '8px', textTransform: 'uppercase' }}>Art <span className="text-gold">Gallery</span></h1>
+        <h1 style={{ marginBottom: '1.5rem', letterSpacing: '8px', textTransform: 'uppercase' }}>{settings.gallery_title}</h1>
         <div style={{ width: '40px', height: '1px', background: 'var(--color-gold)', margin: '1.5rem auto' }}></div>
         <p style={{ color: '#888', fontSize: '1rem', maxWidth: '600px', margin: '0 auto', letterSpacing: '1px' }}>
-          A visual journey through our most exquisite custom resin creations and preserved memories.
+          {settings.gallery_subtitle}
         </p>
       </div>
 

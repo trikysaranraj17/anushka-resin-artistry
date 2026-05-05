@@ -8,8 +8,7 @@ export default function Home() {
   const [settings, setSettings] = useState({
     hero_title: 'LIQUID LUXURY',
     hero_subtitle: 'Handcrafted resin masterpieces that redefine the boundaries of modern elegance.',
-    hero_video: 'https://cdn.shopify.com/videos/c/o/v/6f7c6f0d9c4e4b5f8c1e8b3b3b3b3b3b.mp4',
-    about_text: 'Every piece is hand-poured with industrial-grade premium resin, infused with raw pigments and 24k gold leaf accents.'
+    hero_video: 'https://cdn.shopify.com/videos/c/o/v/6f7c6f0d9c4e4b5f8c1e8b3b3b3b3b3b.mp4'
   })
   const supabase = createClient()
   useReveal()
@@ -81,8 +80,8 @@ export default function Home() {
       </section>
 
       {/* 2. Collections Overview */}
-      <section className="container" style={{ padding: '15rem 2rem' }}>
-        <div className="reveal" style={{ textAlign: 'center', marginBottom: '10rem' }}>
+      <section className="container" style={{ padding: '8rem 2rem' }}>
+        <div className="reveal" style={{ textAlign: 'center', marginBottom: '6rem' }}>
           <h2 style={{ textTransform: 'uppercase', letterSpacing: '6px' }}>Masterpiece <span className="text-gold">Galleries</span></h2>
           <div style={{ width: '60px', height: '1px', background: 'var(--color-gold)', margin: '2rem auto' }}></div>
         </div>
@@ -103,24 +102,6 @@ export default function Home() {
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* 3. The Story */}
-      <section style={{ background: '#0a0a0a', padding: '15rem 0' }}>
-        <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '8rem', alignItems: 'center' }}>
-          <div className="reveal">
-            <div className="img-zoom-container" style={{ position: 'relative', height: '700px', overflow: 'visible' }}>
-              <img src="https://images.unsplash.com/photo-1615800098779-1be32e60cca3?w=1200" style={{ boxShadow: '50px 50px 0 var(--color-gold-dark)' }} alt="Craftsmanship" />
-            </div>
-          </div>
-          <div className="reveal" style={{ paddingRight: '4rem' }}>
-            <h2 className="text-gold" style={{ fontSize: '4rem', marginBottom: '3rem' }}>Pure <br/>Craftsmanship</h2>
-            <p style={{ color: '#888', fontSize: '1.3rem', lineHeight: 2, marginBottom: '4rem' }}>
-              {settings.about_text}
-            </p>
-            <a href="/custom-orders" className="btn-solid-gold">Start Your Commission</a>
-          </div>
         </div>
       </section>
 

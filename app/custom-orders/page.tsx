@@ -1,9 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import useReveal from '@/hooks/useReveal'
+import { createClient } from '@/lib/supabase/client'
 
 export default function CustomOrders() {
+  const [settings, setSettings] = useState({
+    custom_title: 'BESPOKE ARTISTRY',
+    custom_subtitle: 'Collaborate with our master artisans to create a one-of-a-kind resin masterpiece tailored to your exact vision.'
+  })
+  
   const [formData, setFormData] = useState({
     category: 'Resin Tables',
     primaryColor: '#D4AF37',
@@ -17,41 +23,29 @@ export default function CustomOrders() {
 
   const [submitted, setSubmitted] = useState(false)
   const [isSending, setIsSending] = useState(false)
+  const supabase = createClient()
   useReveal()
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+  useEffect(() => {
+    async function fetchSettings() {
+      const { data } = await supabase.from('site_config').select('custom_title, custom_subtitle').single()
+      if (data) setSettings(data)
+    }
+    fetchSettings()
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSending(true)
-    
-    const { category, primaryColor, secondaryColor, dimensions, specialRequests, name, phone, email } = formData
-    
     try {
-      await fetch("https://formsubmit.co/ajax/deepaksabari28@gmail.com", {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-            name, phone, email, category,
-            colors: `${primaryColor}, ${secondaryColor}`,
-            dimensions, requests: specialRequests,
-            _subject: `NEW CUSTOM ORDER: ${category} from ${name}`
-        })
-      })
-
-      const { createClient } = await import('@/lib/supabase/client')
-      const supabase = createClient()
+      const { category, primaryColor, secondaryColor, dimensions, specialRequests, name, phone, email } = formData
       await supabase.from('custom_orders').insert([{
         customer_name: name, email, phone, category, dimensions,
         special_requests: specialRequests, status: 'pending'
       }])
-
       setSubmitted(true)
     } catch (error) {
-      console.error("Custom order failed:", error)
-      alert("Submission failed. Please try again.")
+      alert("Submission failed.")
     } finally {
       setIsSending(false)
     }
@@ -60,10 +54,10 @@ export default function CustomOrders() {
   return (
     <div style={{ padding: '12rem 0' }}>
       <div className="reveal" style={{ textAlign: 'center', marginBottom: '8rem' }}>
-        <h1 style={{ letterSpacing: '12px', textTransform: 'uppercase' }}>BESPOKE <span className="text-gold">ARTISTRY</span></h1>
+        <h1 style={{ letterSpacing: '12px', textTransform: 'uppercase' }}>{settings.custom_title}</h1>
         <div style={{ width: '40px', height: '1px', background: 'var(--color-gold)', margin: '2rem auto' }}></div>
         <p style={{ color: '#888', fontSize: '1.1rem', letterSpacing: '2px', fontStyle: 'italic', maxWidth: '700px', margin: '0 auto' }}>
-          Collaborate with our master artisans to create a one-of-a-kind resin masterpiece tailored to your exact vision.
+          {settings.custom_subtitle}
         </p>
       </div>
 
@@ -71,79 +65,46 @@ export default function CustomOrders() {
         <div className="reveal">
           <div className="glass" style={{ padding: '4rem', boxShadow: '0 30px 60px rgba(0,0,0,0.5)' }}>
             {submitted ? (
-              <div style={{ textAlign: 'center', padding: '4rem 0' }} className="animate-fade-in">
+              <div style={{ textAlign: 'center', padding: '4rem 0' }}>
                 <div style={{ color: 'var(--color-gold)', fontSize: '5rem', marginBottom: '2rem' }}>💎</div>
                 <h2 style={{ marginBottom: '1.5rem', letterSpacing: '2px' }}>REQUEST SUBMITTED</h2>
-                <p style={{ color: '#aaa', fontSize: '1.1rem', lineHeight: 1.8 }}>We have received your custom request. A consultant will contact you shortly.</p>
+                <p style={{ color: '#aaa' }}>We will contact you shortly.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 <div>
                   <label style={{ display: 'block', marginBottom: '1rem', color: 'var(--color-gold)', fontSize: '0.8rem', letterSpacing: '2px', fontWeight: 700 }}>COLLECTION TYPE</label>
-                  <select name="category" value={formData.category} onChange={handleChange} style={{ padding: '1.2rem', borderRadius: 0, border: '1px solid rgba(255,255,255,0.1)' }}>
-                    <option value="Resin Tables">Resin Tables (Custom Size)</option>
-                    <option value="Name Boards">Name Boards</option>
-                    <option value="Preservation Art">Preservation Art</option>
-                    <option value="Wall Hangings">Wall Hangings</option>
-                    <option value="Other">Other Custom Order</option>
+                  <select name="category" value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} style={{ padding: '1.2rem', borderRadius: 0 }}>
+                    <option value="MANDELA ART">Mandela Art</option>
+                    <option value="PENDANTS">Pendants</option>
+                    <option value="WALL CLOCKS">Wall Clocks</option>
+                    <option value="VARMALA PRESERVATION">Varmala Preservation</option>
+                    <option value="Resin Tables">Resin Tables</option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
-
-                <div style={{ display: 'flex', gap: '2rem' }}>
-                  <div style={{ flex: 1 }}>
-                    <label style={{ display: 'block', marginBottom: '1rem', color: 'var(--color-gold)', fontSize: '0.8rem', letterSpacing: '2px', fontWeight: 700 }}>PRIMARY HUE</label>
-                    <input type="color" name="primaryColor" value={formData.primaryColor} onChange={handleChange} style={{ padding: '0', height: '60px', borderRadius: 0, border: 'none' }} />
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <label style={{ display: 'block', marginBottom: '1rem', color: 'var(--color-gold)', fontSize: '0.8rem', letterSpacing: '2px', fontWeight: 700 }}>SECONDARY HUE</label>
-                    <input type="color" name="secondaryColor" value={formData.secondaryColor} onChange={handleChange} style={{ padding: '0', height: '60px', borderRadius: 0, border: 'none' }} />
-                  </div>
-                </div>
-
-                <div>
-                  <label style={{ display: 'block', marginBottom: '1rem', color: 'var(--color-gold)', fontSize: '0.8rem', letterSpacing: '2px', fontWeight: 700 }}>DIMENSIONS (CM/FT)</label>
-                  <input type="text" name="dimensions" value={formData.dimensions} onChange={handleChange} placeholder="e.g. 120cm x 60cm" style={{ padding: '1.2rem', borderRadius: 0 }} />
-                </div>
-
-                <div>
-                  <label style={{ display: 'block', marginBottom: '1rem', color: 'var(--color-gold)', fontSize: '0.8rem', letterSpacing: '2px', fontWeight: 700 }}>ARTISTIC VISION</label>
-                  <textarea name="specialRequests" value={formData.specialRequests} onChange={handleChange} placeholder="Describe your masterpiece..." rows={4} style={{ padding: '1.2rem', borderRadius: 0 }}></textarea>
-                </div>
-
-                <div style={{ margin: '2rem 0', height: '1px', background: 'rgba(212,175,55,0.1)' }} />
-
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
-                  <input type="text" name="name" value={formData.name} onChange={handleChange} required placeholder="YOUR NAME" style={{ padding: '1.2rem', borderRadius: 0 }} />
-                  <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required placeholder="WHATSAPP NUMBER" style={{ padding: '1.2rem', borderRadius: 0 }} />
+                  <input type="text" placeholder="YOUR NAME" required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
+                  <input type="tel" placeholder="WHATSAPP NUMBER" required value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} />
                 </div>
-
+                <input type="email" placeholder="EMAIL ADDRESS" required value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
+                <textarea placeholder="DESCRIBE YOUR VISION..." rows={4} value={formData.specialRequests} onChange={e => setFormData({...formData, specialRequests: e.target.value})} />
                 <button type="submit" className="btn-solid-gold" style={{ padding: '1.5rem' }} disabled={isSending}>
-                  {isSending ? 'SENDING REQUEST...' : 'SUBMIT BESPOKE COMMISSION'}
+                  {isSending ? 'PROCESSING...' : 'SUBMIT COMMISSION'}
                 </button>
               </form>
             )}
           </div>
         </div>
-
         <div className="reveal">
-          <div style={{ position: 'sticky', top: '150px' }}>
-            <h2 style={{ fontSize: '3rem', marginBottom: '4rem' }}>The <span className="text-gold">Curation</span></h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
-              {[
-                { step: '01', title: 'CONCEPTUALIZATION', desc: 'Share your vision and color palette.' },
-                { step: '02', title: 'QUOTATION', desc: 'A custom investment proposal is generated.' },
-                { step: '03', title: 'CRAFTING', desc: 'Our artisans begin the pouring process.' },
-                { step: '04', title: 'CURATION', desc: 'Your masterpiece is secure-shipped.' }
-              ].map((item, idx) => (
-                <div key={idx} style={{ display: 'flex', gap: '2rem' }}>
-                  <span style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--color-gold)', opacity: 0.5 }}>{item.step}</span>
-                  <div>
-                    <h3 style={{ fontSize: '1rem', letterSpacing: '3px', marginBottom: '1rem' }}>{item.title}</h3>
-                    <p style={{ color: '#888', lineHeight: 1.8 }}>{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <h2 style={{ fontSize: '3rem', marginBottom: '4rem' }}>Our <span className="text-gold">Process</span></h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
+            {['CONCEPTUALIZATION', 'QUOTATION', 'CRAFTING', 'CURATION'].map((step, i) => (
+              <div key={i} style={{ display: 'flex', gap: '2rem' }}>
+                <span style={{ color: 'var(--color-gold)', fontWeight: 800 }}>0{i+1}</span>
+                <h3 style={{ fontSize: '1rem', letterSpacing: '3px' }}>{step}</h3>
+              </div>
+            ))}
           </div>
         </div>
       </div>

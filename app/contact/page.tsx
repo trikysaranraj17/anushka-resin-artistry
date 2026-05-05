@@ -1,45 +1,38 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import useReveal from '@/hooks/useReveal'
+import { createClient } from '@/lib/supabase/client'
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+  const [settings, setSettings] = useState({
+    contact_mgmt: 'Mr. Karthik',
+    contact_phone: '+91 98407 06312',
+    contact_email: 'jayachandran.r0110@gmail.com'
   })
-
+  
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
   const [isSending, setIsSending] = useState(false)
+  const supabase = createClient()
   useReveal()
 
-  const handleSend = async () => {
-    const { name, email, message } = formData
-    if (!name || !email || !message) {
-      alert("Please fill out all fields.")
-      return
+  useEffect(() => {
+    async function fetchSettings() {
+      const { data } = await supabase.from('site_config').select('contact_mgmt, contact_phone, contact_email').single()
+      if (data) setSettings(data)
     }
+    fetchSettings()
+  }, [])
 
+  const handleSend = async (e: React.FormEvent) => {
+    e.preventDefault()
     setIsSending(true)
-
     try {
-      await fetch("https://formsubmit.co/ajax/deepaksabari28@gmail.com", {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-            name, email, message,
-            _subject: `New Inquiry from ${name}`
-        })
-      })
-
-      const { createClient } = await import('@/lib/supabase/client')
-      const supabase = createClient()
-      await supabase.from('contact_inquiries').insert([{ name, email, message }])
-
+      await supabase.from('contact_inquiries').insert([{ ...formData }])
       setSubmitted(true)
     } catch (error) {
-      alert("Something went wrong. Please try again.")
+      alert("Error sending message.")
     } finally {
       setIsSending(false)
     }
@@ -63,15 +56,20 @@ export default function Contact() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
               <div>
                 <h4 style={{ fontSize: '0.7rem', color: 'var(--color-gold)', letterSpacing: '3px', marginBottom: '1rem', textTransform: 'uppercase' }}>Curation Management</h4>
-                <p style={{ fontSize: '1.5rem', fontWeight: 800 }}>Mr. Karthik</p>
+                <p style={{ fontSize: '1.5rem', fontWeight: 800 }}>{settings.contact_mgmt}</p>
               </div>
               
               <div>
                 <h4 style={{ fontSize: '0.7rem', color: 'var(--color-gold)', letterSpacing: '3px', marginBottom: '1rem', textTransform: 'uppercase' }}>WhatsApp Concierge</h4>
-                <p style={{ fontSize: '1.5rem', fontWeight: 800 }}>+91 98407 06312</p>
+                <p style={{ fontSize: '1.5rem', fontWeight: 800 }}>{settings.contact_phone}</p>
               </div>
               
-              <a href="https://wa.me/919840706312" target="_blank" className="btn-solid-gold" style={{ textAlign: 'center', marginTop: '2rem' }}>
+              <div>
+                <h4 style={{ fontSize: '0.7rem', color: 'var(--color-gold)', letterSpacing: '3px', marginBottom: '1rem', textTransform: 'uppercase' }}>Direct Correspondence</h4>
+                <p style={{ fontSize: '1.2rem', fontWeight: 800, color: '#aaa' }}>{settings.contact_email}</p>
+              </div>
+
+              <a href={`https://wa.me/${settings.contact_phone.replace(/[^0-9]/g, '')}`} target="_blank" className="btn-solid-gold" style={{ textAlign: 'center', marginTop: '2rem' }}>
                 CONNECT ON WHATSAPP
               </a>
             </div>
@@ -81,17 +79,17 @@ export default function Contact() {
         <div className="reveal">
           <div className="glass" style={{ padding: '4rem' }}>
             {submitted ? (
-              <div style={{ textAlign: 'center', padding: '4rem 0' }} className="animate-fade-in">
+              <div style={{ textAlign: 'center', padding: '4rem 0' }}>
                 <div style={{ color: 'var(--color-gold)', fontSize: '5rem', marginBottom: '2rem' }}>💎</div>
                 <h2 style={{ marginBottom: '1.5rem', letterSpacing: '2px' }}>INQUIRY RECEIVED</h2>
                 <p style={{ color: '#aaa' }}>Our team will contact you shortly.</p>
               </div>
             ) : (
-              <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+              <form onSubmit={handleSend} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 <h2 style={{ fontSize: '1.8rem', marginBottom: '1rem', letterSpacing: '3px' }}>DIRECT <span className="text-gold">INQUIRY</span></h2>
-                <input type="text" placeholder="YOUR NAME" required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} style={{ padding: '1.2rem', borderRadius: 0 }} />
-                <input type="email" placeholder="YOUR EMAIL" required value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} style={{ padding: '1.2rem', borderRadius: 0 }} />
-                <textarea placeholder="HOW CAN WE ASSIST YOU?" rows={5} required value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} style={{ padding: '1.2rem', borderRadius: 0 }}></textarea>
+                <input type="text" placeholder="YOUR NAME" required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
+                <input type="email" placeholder="YOUR EMAIL" required value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
+                <textarea placeholder="HOW CAN WE ASSIST YOU?" rows={5} required value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} />
                 <button type="submit" className="btn-solid-gold" style={{ padding: '1.5rem' }} disabled={isSending}>
                   {isSending ? 'TRANSMITTING...' : 'SEND INQUIRY'}
                 </button>

@@ -1,13 +1,30 @@
 'use client'
 
+import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
 import useReveal from '@/hooks/useReveal'
 
 export default function Home() {
+  const [settings, setSettings] = useState({
+    hero_title: 'LIQUID LUXURY',
+    hero_subtitle: 'Handcrafted resin masterpieces that redefine the boundaries of modern elegance.',
+    hero_video: 'https://cdn.shopify.com/videos/c/o/v/6f7c6f0d9c4e4b5f8c1e8b3b3b3b3b3b.mp4'
+  })
+  const supabase = createClient()
   useReveal()
+
+  useEffect(() => {
+    async function fetchSettings() {
+      const { data } = await supabase.from('site_config').select('*').single()
+      if (data) setSettings(data)
+    }
+    fetchSettings()
+  }, [])
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      {/* 1. Ultra-Luxury Hero Section */}
+      {/* 1. Cinematic Hero Section with Dynamic Content */}
       <section style={{ 
         height: '100vh', 
         position: 'relative',
@@ -17,134 +34,104 @@ export default function Home() {
         textAlign: 'center',
         overflow: 'hidden'
       }}>
-        {/* Parallax Background */}
-        <div style={{ 
-          position: 'absolute', 
-          inset: 0, 
-          backgroundImage: 'url("https://images.unsplash.com/photo-1615800098779-1be32e60cca3?w=1600")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          filter: 'brightness(0.3)',
-          zIndex: -1,
-          transform: 'scale(1.1)'
-        }} className="parallax-bg"></div>
+        <video 
+          key={settings.hero_video}
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+          className="video-bg"
+          src={settings.hero_video} 
+        />
+        
+        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle, transparent 20%, #050505 100%)', zIndex: 0 }}></div>
 
-        <div className="reveal active" style={{ maxWidth: '1000px', padding: '0 2rem' }}>
-          <h1 style={{ textTransform: 'uppercase', letterSpacing: '8px', marginBottom: '1.5rem' }}>
-            Eternal <span className="text-gold">Artistry</span>
-          </h1>
+        <motion.div 
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          style={{ maxWidth: '1000px', padding: '0 2rem', zIndex: 1 }}
+        >
+          <motion.h1 
+            style={{ textTransform: 'uppercase', marginBottom: '1.5rem', fontWeight: 800, letterSpacing: '10px' }}
+          >
+            {settings.hero_title.split(' ').map((word, i) => (
+              <span key={i} className={i === 1 ? 'text-gold' : ''}>{word} </span>
+            ))}
+          </motion.h1>
           <p style={{ 
-            fontSize: '1.2rem', 
-            color: '#ccc', 
-            maxWidth: '600px', 
-            margin: '0 auto 3rem auto', 
+            fontSize: '1.4rem', 
+            color: '#eee', 
+            maxWidth: '700px', 
+            margin: '0 auto 4rem auto', 
             fontFamily: 'var(--font-serif)',
             fontStyle: 'italic',
-            letterSpacing: '2px',
-            lineHeight: 1.8
+            letterSpacing: '3px',
+            lineHeight: 1.6
           }}>
-            Handcrafted luxury resin masterpieces designed to transform your space into a sophisticated sanctuary.
+            {settings.hero_subtitle}
           </p>
-          <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="/products" className="btn-solid-gold">View Collections</a>
-            <a href="/custom-orders" className="btn-gold">Bespoke Commission</a>
+          <div style={{ display: 'flex', gap: '2.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <motion.a whileHover={{ scale: 1.1 }} href="/products" className="btn-solid-gold">Collections</motion.a>
+            <motion.a whileHover={{ scale: 1.1 }} href="/custom-orders" className="btn-gold">Bespoke Art</motion.a>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Scroll Indicator */}
-        <div style={{ 
-          position: 'absolute', 
-          bottom: '2rem', 
-          left: '50%', 
-          transform: 'translateX(-50%)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '1rem',
-          opacity: 0.6
-        }}>
-          <span style={{ fontSize: '0.7rem', letterSpacing: '4px', textTransform: 'uppercase' }}>Discover</span>
-          <div style={{ width: '1px', height: '60px', background: 'var(--color-gold)', animation: 'scroll-line 2s infinite' }}></div>
+        <div style={{ position: 'absolute', bottom: '3rem', left: '50%', transform: 'translateX(-50%)', opacity: 0.5 }}>
+          <div style={{ width: '1px', height: '100px', background: 'var(--gradient-gold)', animation: 'scroll-line 3s infinite' }}></div>
         </div>
       </section>
 
-      {/* 2. Collections Overview (Circular/Modern) */}
-      <section className="container" style={{ padding: '10rem 2rem' }}>
-        <div className="reveal" style={{ textAlign: 'center', marginBottom: '6rem' }}>
-          <h2 style={{ textTransform: 'uppercase', letterSpacing: '4px' }}>Curated <span className="text-gold">Collections</span></h2>
-          <div style={{ width: '40px', height: '1px', background: 'var(--color-gold)', margin: '1.5rem auto' }}></div>
+      {/* 2. Collections Overview */}
+      <section className="container" style={{ padding: '15rem 2rem' }}>
+        <div className="reveal" style={{ textAlign: 'center', marginBottom: '10rem' }}>
+          <h2 style={{ textTransform: 'uppercase', letterSpacing: '6px' }}>Masterpiece <span className="text-gold">Galleries</span></h2>
+          <div style={{ width: '60px', height: '1px', background: 'var(--color-gold)', margin: '2rem auto' }}></div>
         </div>
 
-        <div className="product-grid">
+        <div className="product-grid" style={{ gap: '6rem' }}>
           {[
-            { title: 'Signature Clocks', img: 'https://images.unsplash.com/photo-1600121848594-d8644e57abab?w=800', link: '/products' },
-            { title: 'Statement Tables', img: 'https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=800', link: '/products' },
-            { title: 'Preservation Art', img: 'https://images.unsplash.com/photo-1606041008023-472dfb5e530f?w=800', link: '/products' }
+            { title: 'Signature Clocks', img: 'https://images.unsplash.com/photo-1600121848594-d8644e57abab?w=1000', link: '/products' },
+            { title: 'River Tables', img: 'https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=1000', link: '/products' },
+            { title: 'Floral Preservation', img: 'https://images.unsplash.com/photo-1606041008023-472dfb5e530f?w=1000', link: '/products' }
           ].map((cat, idx) => (
-            <div key={idx} className="reveal luxury-card" style={{ padding: 0, textAlign: 'center' }}>
-              <div className="img-zoom-container" style={{ height: '400px' }}>
-                <img src={cat.img} alt={cat.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <motion.div key={idx} className="reveal" whileHover={{ y: -20 }} style={{ textAlign: 'center' }}>
+              <div className="img-zoom-container" style={{ height: '500px', boxShadow: '0 30px 60px rgba(0,0,0,0.5)', borderRadius: '4px' }}>
+                <img src={cat.img} alt={cat.title} />
               </div>
-              <div style={{ padding: '2.5rem' }}>
-                <h3 style={{ fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '3px', marginBottom: '1.5rem' }}>{cat.title}</h3>
-                <a href={cat.link} className="text-gold" style={{ fontSize: '0.8rem', fontWeight: 600, letterSpacing: '2px' }}>EXPLORE COLLECTION →</a>
+              <div style={{ padding: '3rem' }}>
+                <h3 style={{ fontSize: '1.4rem', textTransform: 'uppercase', letterSpacing: '4px', marginBottom: '2rem' }}>{cat.title}</h3>
+                <a href={cat.link} className="btn-gold" style={{ padding: '0.8rem 2rem', fontSize: '0.7rem' }}>Discover</a>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
 
-      {/* 3. Featured Masterpiece (Split Layout) */}
-      <section style={{ background: '#080808', padding: '10rem 0' }}>
-        <div className="container" style={{ display: 'flex', flexWrap: 'wrap', gap: '6rem', alignItems: 'center' }}>
-          <div className="reveal" style={{ flex: '1 1 500px' }}>
-            <div className="img-zoom-container" style={{ position: 'relative', height: '600px', boxShadow: '30px 30px 0 var(--color-gold)' }}>
-              <img src="https://images.unsplash.com/photo-1615800098779-1be32e60cca3?w=1000" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Masterpiece" />
+      {/* 3. The Story */}
+      <section style={{ background: '#0a0a0a', padding: '15rem 0' }}>
+        <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '8rem', alignItems: 'center' }}>
+          <div className="reveal">
+            <div className="img-zoom-container" style={{ position: 'relative', height: '700px', overflow: 'visible' }}>
+              <img src="https://images.unsplash.com/photo-1615800098779-1be32e60cca3?w=1200" style={{ boxShadow: '50px 50px 0 var(--color-gold-dark)' }} alt="Craftsmanship" />
             </div>
           </div>
-          <div className="reveal" style={{ flex: '1 1 400px' }}>
-            <h2 className="glow-text" style={{ fontSize: '3rem', lineHeight: 1.2 }}>The Art of <br/>Preservation</h2>
-            <p style={{ color: '#aaa', margin: '2rem 0 3rem 0', fontSize: '1.1rem', lineHeight: 1.8 }}>
-              Each piece is a labor of love, combining premium epoxy resin with natural elements, metallic pigments, and meticulous craftsmanship. We don't just make art; we capture memories.
+          <div className="reveal" style={{ paddingRight: '4rem' }}>
+            <h2 className="text-gold" style={{ fontSize: '4rem', marginBottom: '3rem' }}>Pure <br/>Craftsmanship</h2>
+            <p style={{ color: '#888', fontSize: '1.3rem', lineHeight: 2, marginBottom: '4rem' }}>
+              Every piece is hand-poured with industrial-grade premium resin, infused with raw pigments and 24k gold leaf accents.
             </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                <div style={{ width: '20px', height: '1px', background: 'var(--color-gold)' }}></div>
-                <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Custom Colors & Dimensions</span>
-              </div>
-              <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                <div style={{ width: '20px', height: '1px', background: 'var(--color-gold)' }}></div>
-                <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Premium Material Sourcing</span>
-              </div>
-              <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                <div style={{ width: '20px', height: '1px', background: 'var(--color-gold)' }}></div>
-                <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Pan-India White Glove Delivery</span>
-              </div>
-            </div>
-            <a href="/custom-orders" className="btn-gold" style={{ marginTop: '4rem' }}>Start Your Commission</a>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Luxury CTA Section */}
-      <section style={{ padding: '10rem 2rem', textAlign: 'center', background: 'var(--color-black)' }}>
-        <div className="reveal" style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <h2 style={{ fontSize: '3.5rem', marginBottom: '2rem' }}>Elevate Your <span className="text-gold">Lifestyle</span></h2>
-          <p style={{ color: '#888', marginBottom: '4rem', fontSize: '1.2rem' }}>
-            Join our exclusive circle of collectors and receive early access to new collections and bespoke art updates.
-          </p>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-            <input type="email" placeholder="ENTER YOUR EMAIL" style={{ maxWidth: '400px', borderRadius: '0', border: 'none', borderBottom: '1px solid #333', background: 'transparent', marginBottom: 0 }} />
-            <button className="btn-solid-gold">Join Now</button>
+            <a href="/custom-orders" className="btn-solid-gold">Start Your Commission</a>
           </div>
         </div>
       </section>
 
       <style jsx>{`
         @keyframes scroll-line {
-          0% { transform: translateY(-100%); opacity: 0; }
-          50% { transform: translateY(0); opacity: 1; }
-          100% { transform: translateY(100%); opacity: 0; }
+          0% { transform: scaleY(0); transform-origin: top; opacity: 0; }
+          50% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+          51% { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+          100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
         }
       `}</style>
     </div>

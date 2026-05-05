@@ -19,6 +19,7 @@ export default function AdminLayout({
 
   const navItems = [
     { name: 'Dashboard', path: '/admin', icon: '📊' },
+    { name: 'Site Editor', path: '/admin/settings', icon: '⚙️' },
     { name: 'Products', path: '/admin/products', icon: '🛍️' },
     { name: 'Media', path: '/admin/media', icon: '📂' },
     { name: 'Inquiries', path: '/admin/inquiries', icon: '✉️' },

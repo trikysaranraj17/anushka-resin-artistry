@@ -185,9 +185,10 @@ h2 { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 600; margin-bottom: 1.5re
   .desktop-nav { display: none !important; }
   .mobile-menu-btn { display: flex !important; flex-direction: column; gap: 6px; cursor: pointer; }
   .mobile-menu-btn span { width: 30px; height: 2px; background: var(--color-gold); }
-  h1 { font-size: 2.2rem !important; }
-  h2 { font-size: 1.6rem !important; }
-  p { font-size: 0.9rem !important; }
+  h1 { font-size: 1.8rem !important; letter-spacing: 5px !important; }
+  h2 { font-size: 1.4rem !important; }
+  p { font-size: 0.85rem !important; line-height: 1.6 !important; }
+  .btn-gold, .btn-solid-gold { padding: 0.8rem 1.5rem !important; font-size: 0.65rem !important; }
 }
 
 @media (min-width: 1025px) {

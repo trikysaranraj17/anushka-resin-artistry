@@ -12,10 +12,15 @@ export default function Products() {
 
   useEffect(() => {
     async function fetchProducts() {
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from('products')
         .select('*')
         .order('created_at', { ascending: false })
+      
+      if (error) {
+        console.error('SUPABASE ERROR (Products):', error.message)
+      }
+      
       if (data) setProducts(data)
       setLoading(false)
     }

@@ -69,17 +69,28 @@ export default function Navbar() {
         </div>
 
         {/* Admin Button & Mobile Toggle - Right Aligned */}
-        <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '1rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '1.5rem', zIndex: 2200 }}>
           <a href="/admin" className="btn-gold desktop-nav" style={{ padding: '0.7rem 1.5rem', fontSize: '0.65rem' }}>Admin Portal</a>
           
           <button 
             className="mobile-menu-btn" 
             onClick={() => setIsOpen(!isOpen)}
-            style={{ background: 'none', border: 'none', color: 'var(--color-gold)', position: 'relative', width: '30px', height: '20px' }}
+            aria-label="Toggle Menu"
+            style={{ 
+              background: 'none', 
+              border: 'none', 
+              color: 'var(--color-gold)', 
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '6px',
+              padding: '10px',
+              cursor: 'pointer',
+              zIndex: 3500
+            }}
           >
-            <span style={{ display: 'block', width: '100%', height: '2px', background: 'currentColor', position: 'absolute', top: 0, transition: '0.3s', transform: isOpen ? 'rotate(45deg) translateY(9px)' : 'none' }} />
-            <span style={{ display: 'block', width: '100%', height: '2px', background: 'currentColor', position: 'absolute', top: '9px', opacity: isOpen ? 0 : 1 }} />
-            <span style={{ display: 'block', width: '100%', height: '2px', background: 'currentColor', position: 'absolute', bottom: 0, transition: '0.3s', transform: isOpen ? 'rotate(-45deg) translateY(-9px)' : 'none' }} />
+            <span style={{ display: 'block', width: '30px', height: '2px', background: 'currentColor', transition: '0.3s', transform: isOpen ? 'rotate(45deg) translateY(11px)' : 'none' }} />
+            <span style={{ display: 'block', width: '30px', height: '2px', background: 'currentColor', opacity: isOpen ? 0 : 1 }} />
+            <span style={{ display: 'block', width: '30px', height: '2px', background: 'currentColor', transition: '0.3s', transform: isOpen ? 'rotate(-45deg) translateY(-11px)' : 'none' }} />
           </button>
         </div>
       </nav>

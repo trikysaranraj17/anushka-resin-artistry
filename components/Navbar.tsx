@@ -47,7 +47,7 @@ export default function Navbar() {
         {announcement}
       </div>
 
-      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`} style={{ top: '2.5rem' }}>
+      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`} style={{ top: '2.5rem', display: 'grid', gridTemplateColumns: 'auto 1fr auto', alignItems: 'center', gap: '2rem' }}>
         <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
           <img src="/logo.png?v=3" alt="Anushka" style={{ height: '45px', filter: 'drop-shadow(0 0 10px rgba(212,175,55,0.4))' }} />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -58,26 +58,29 @@ export default function Navbar() {
           </div>
         </a>
 
-        {/* Desktop Navigation */}
-        <div className="desktop-nav" style={{ gap: '3rem' }}>
+        {/* Desktop Navigation - Centered */}
+        <div className="desktop-nav" style={{ display: 'flex', justifyContent: 'center', gap: '2.5rem' }}>
           {['Collections', 'Gallery', 'Bespoke', 'Contact'].map((item) => (
             <a key={item} href={item === 'Bespoke' ? '/custom-orders' : item === 'Collections' ? '/products' : `/${item.toLowerCase()}`} className="nav-link" style={{ fontWeight: 600 }}>
               {item}
             </a>
           ))}
-          <a href="/admin" className="btn-gold" style={{ padding: '0.7rem 2rem', fontSize: '0.65rem' }}>Admin Portal</a>
         </div>
 
-        {/* Mobile Toggle Button */}
-        <button 
-          className="mobile-menu-btn" 
-          onClick={() => setIsOpen(!isOpen)}
-          style={{ background: 'none', border: 'none', color: 'var(--color-gold)', position: 'relative', width: '30px', height: '20px' }}
-        >
-          <span style={{ display: 'block', width: '100%', height: '2px', background: 'currentColor', position: 'absolute', top: 0, transition: '0.3s', transform: isOpen ? 'rotate(45deg) translateY(9px)' : 'none' }} />
-          <span style={{ display: 'block', width: '100%', height: '2px', background: 'currentColor', position: 'absolute', top: '9px', opacity: isOpen ? 0 : 1 }} />
-          <span style={{ display: 'block', width: '100%', height: '2px', background: 'currentColor', position: 'absolute', bottom: 0, transition: '0.3s', transform: isOpen ? 'rotate(-45deg) translateY(-9px)' : 'none' }} />
-        </button>
+        {/* Admin Button & Mobile Toggle - Right Aligned */}
+        <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '1rem' }}>
+          <a href="/admin" className="btn-gold desktop-nav" style={{ padding: '0.7rem 1.5rem', fontSize: '0.65rem' }}>Admin Portal</a>
+          
+          <button 
+            className="mobile-menu-btn" 
+            onClick={() => setIsOpen(!isOpen)}
+            style={{ background: 'none', border: 'none', color: 'var(--color-gold)', position: 'relative', width: '30px', height: '20px' }}
+          >
+            <span style={{ display: 'block', width: '100%', height: '2px', background: 'currentColor', position: 'absolute', top: 0, transition: '0.3s', transform: isOpen ? 'rotate(45deg) translateY(9px)' : 'none' }} />
+            <span style={{ display: 'block', width: '100%', height: '2px', background: 'currentColor', position: 'absolute', top: '9px', opacity: isOpen ? 0 : 1 }} />
+            <span style={{ display: 'block', width: '100%', height: '2px', background: 'currentColor', position: 'absolute', bottom: 0, transition: '0.3s', transform: isOpen ? 'rotate(-45deg) translateY(-9px)' : 'none' }} />
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Navigation Overlay */}

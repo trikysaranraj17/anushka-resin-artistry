@@ -168,8 +168,30 @@ h2 { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 600; margin-bottom: 1.5re
   border-bottom: 1px solid rgba(212, 175, 55, 0.2);
 }
 
-@media (max-width: 768px) {
-  .navbar, .navbar.scrolled { padding: 1.5rem; }
+@media (max-width: 1024px) {
+  .desktop-nav { display: none; }
+  .mobile-menu-btn { display: flex; flex-direction: column; }
+}
+
+@media (min-width: 1025px) {
+  .mobile-menu-btn { display: none !important; }
+  .desktop-nav { display: flex; gap: 3rem; align-items: center; }
+}
+
+/* Luxury Admin Inputs */
+input, textarea, select {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(212, 175, 55, 0.2) !important;
+  color: white !important;
+  padding: 1rem !important;
+  border-radius: 4px !important;
+  outline: none !important;
+  width: 100%;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--color-gold) !important;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
 }
 
 /* Image Cinematic Reveal */

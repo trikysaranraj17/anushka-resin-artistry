@@ -2,7 +2,6 @@
 
 import { createClient } from '@/lib/supabase/client'
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
 import useReveal from '@/hooks/useReveal'
 
 export default function Products() {
@@ -40,10 +39,9 @@ export default function Products() {
           <p style={{ textAlign: 'center', gridColumn: '1/-1', color: '#666' }}>The collection is currently private. Please check back soon.</p>
         ) : (
           products.map((product) => (
-            <motion.div 
+            <div 
               key={product.id} 
               className="reveal luxury-card" 
-              whileHover={{ y: -15 }}
               style={{ padding: 0, overflow: 'hidden', border: '1px solid rgba(212,175,55,0.1)' }}
             >
               <div className="img-zoom-container" style={{ height: '450px' }}>
@@ -55,7 +53,7 @@ export default function Products() {
                 <p style={{ fontSize: '1.2rem', fontWeight: 800, marginBottom: '2.5rem', color: 'var(--color-white)' }}>₹{product.price.toLocaleString()}</p>
                 <a href={`/contact`} className="btn-gold" style={{ width: '100%', padding: '1rem' }}>Inquire Now</a>
               </div>
-            </motion.div>
+            </div>
           ))
         )}
       </div>

@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import useReveal from '@/hooks/useReveal'
 
 export default function Contact() {
@@ -72,20 +71,9 @@ export default function Contact() {
                 <p style={{ fontSize: '1.5rem', fontWeight: 800 }}>+91 98407 06312</p>
               </div>
               
-              <div>
-                <h4 style={{ fontSize: '0.7rem', color: 'var(--color-gold)', letterSpacing: '3px', marginBottom: '1rem', textTransform: 'uppercase' }}>Direct Correspondence</h4>
-                <p style={{ fontSize: '1.2rem', fontWeight: 800, color: '#aaa' }}>jayachandran.r0110@gmail.com</p>
-              </div>
-
-              <motion.a 
-                whileHover={{ scale: 1.05 }}
-                href="https://wa.me/919840706312" 
-                target="_blank" 
-                className="btn-solid-gold" 
-                style={{ textAlign: 'center', marginTop: '2rem' }}
-              >
+              <a href="https://wa.me/919840706312" target="_blank" className="btn-solid-gold" style={{ textAlign: 'center', marginTop: '2rem' }}>
                 CONNECT ON WHATSAPP
-              </motion.a>
+              </a>
             </div>
           </div>
         </div>
@@ -93,10 +81,10 @@ export default function Contact() {
         <div className="reveal">
           <div className="glass" style={{ padding: '4rem' }}>
             {submitted ? (
-              <div style={{ textAlign: 'center', padding: '4rem 0' }}>
+              <div style={{ textAlign: 'center', padding: '4rem 0' }} className="animate-fade-in">
                 <div style={{ color: 'var(--color-gold)', fontSize: '5rem', marginBottom: '2rem' }}>💎</div>
                 <h2 style={{ marginBottom: '1.5rem', letterSpacing: '2px' }}>INQUIRY RECEIVED</h2>
-                <p style={{ color: '#aaa' }}>Our team will contact you shortly to provide expert assistance.</p>
+                <p style={{ color: '#aaa' }}>Our team will contact you shortly.</p>
               </div>
             ) : (
               <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>

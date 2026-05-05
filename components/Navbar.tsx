@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
 import { createClient } from '@/lib/supabase/client'
 
 export default function Navbar() {
@@ -29,9 +28,7 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.div 
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
+      <div 
         style={{ 
           background: 'var(--gradient-gold)', 
           color: 'var(--color-black)', 
@@ -43,11 +40,12 @@ export default function Navbar() {
           textTransform: 'uppercase',
           position: 'fixed',
           top: 0, width: '100%',
-          zIndex: 2100
+          zIndex: 2100,
+          animation: 'fadeInDown 1s ease forwards'
         }}
       >
         {announcement}
-      </motion.div>
+      </div>
 
       <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`} style={{ top: '2.5rem' }}>
         <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
@@ -60,6 +58,7 @@ export default function Navbar() {
           </div>
         </a>
 
+        {/* Desktop Navigation */}
         <div className="desktop-nav" style={{ gap: '3rem' }}>
           {['Collections', 'Gallery', 'Bespoke', 'Contact'].map((item) => (
             <a key={item} href={item === 'Bespoke' ? '/custom-orders' : item === 'Collections' ? '/products' : `/${item.toLowerCase()}`} className="nav-link" style={{ fontWeight: 600 }}>
@@ -69,42 +68,38 @@ export default function Navbar() {
           <a href="/admin" className="btn-gold" style={{ padding: '0.7rem 2rem', fontSize: '0.65rem' }}>Admin Portal</a>
         </div>
 
+        {/* Mobile Toggle Button */}
         <button 
           className="mobile-menu-btn" 
           onClick={() => setIsOpen(!isOpen)}
           style={{ background: 'none', border: 'none', color: 'var(--color-gold)', position: 'relative', width: '30px', height: '20px' }}
         >
-          <motion.span animate={{ rotate: isOpen ? 45 : 0, y: isOpen ? 9 : 0 }} style={{ display: 'block', width: '100%', height: '2px', background: 'currentColor', position: 'absolute', top: 0 }} />
-          <motion.span animate={{ opacity: isOpen ? 0 : 1 }} style={{ display: 'block', width: '100%', height: '2px', background: 'currentColor', position: 'absolute', top: '9px' }} />
-          <motion.span animate={{ rotate: isOpen ? -45 : 0, y: isOpen ? -9 : 0 }} style={{ display: 'block', width: '100%', height: '2px', background: 'currentColor', position: 'absolute', bottom: 0 }} />
+          <span style={{ display: 'block', width: '100%', height: '2px', background: 'currentColor', position: 'absolute', top: 0, transition: '0.3s', transform: isOpen ? 'rotate(45deg) translateY(9px)' : 'none' }} />
+          <span style={{ display: 'block', width: '100%', height: '2px', background: 'currentColor', position: 'absolute', top: '9px', opacity: isOpen ? 0 : 1 }} />
+          <span style={{ display: 'block', width: '100%', height: '2px', background: 'currentColor', position: 'absolute', bottom: 0, transition: '0.3s', transform: isOpen ? 'rotate(-45deg) translateY(-9px)' : 'none' }} />
         </button>
       </nav>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="mobile-nav-overlay active"
-            style={{ background: 'rgba(5,5,5,0.98)', backdropFilter: 'blur(30px)' }}
-          >
-            {['Home', 'Collections', 'Gallery', 'Bespoke', 'Contact'].map((item) => (
-              <a 
-                key={item} 
-                href={item === 'Home' ? '/' : item === 'Bespoke' ? '/custom-orders' : item === 'Collections' ? '/products' : `/${item.toLowerCase()}`} 
-                className="mobile-nav-link" 
-                onClick={() => setIsOpen(false)}
-                style={{ fontSize: '2.5rem', fontWeight: 800 }}
-              >
-                {item}
-              </a>
-            ))}
-            <a href="/admin" className="btn-solid-gold" style={{ marginTop: '3rem' }} onClick={() => setIsOpen(false)}>Admin Panel</a>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Mobile Navigation Overlay */}
+      {isOpen && (
+        <div 
+          className="mobile-nav-overlay active"
+          style={{ background: 'rgba(5,5,5,0.98)', backdropFilter: 'blur(30px)', opacity: 1, visibility: 'visible', pointerEvents: 'all' }}
+        >
+          {['Home', 'Collections', 'Gallery', 'Bespoke', 'Contact'].map((item) => (
+            <a 
+              key={item} 
+              href={item === 'Home' ? '/' : item === 'Bespoke' ? '/custom-orders' : item === 'Collections' ? '/products' : `/${item.toLowerCase()}`} 
+              className="mobile-nav-link" 
+              onClick={() => setIsOpen(false)}
+              style={{ fontSize: '2.5rem', fontWeight: 800 }}
+            >
+              {item}
+            </a>
+          ))}
+          <a href="/admin" className="btn-solid-gold" style={{ marginTop: '3rem' }} onClick={() => setIsOpen(false)}>Admin Panel</a>
+        </div>
+      )}
     </>
   )
 }

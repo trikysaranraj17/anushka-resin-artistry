@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import useReveal from '@/hooks/useReveal'
 
 export default function CustomOrders() {
@@ -31,33 +30,22 @@ export default function CustomOrders() {
     const { category, primaryColor, secondaryColor, dimensions, specialRequests, name, phone, email } = formData
     
     try {
-      // 1. Background Email via FormSubmit
       await fetch("https://formsubmit.co/ajax/deepaksabari28@gmail.com", {
         method: "POST",
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-            name,
-            phone,
-            email,
-            category,
+            name, phone, email, category,
             colors: `${primaryColor}, ${secondaryColor}`,
-            dimensions,
-            requests: specialRequests,
+            dimensions, requests: specialRequests,
             _subject: `NEW CUSTOM ORDER: ${category} from ${name}`
         })
       })
 
-      // 2. Background Save to Supabase
       const { createClient } = await import('@/lib/supabase/client')
       const supabase = createClient()
       await supabase.from('custom_orders').insert([{
-        customer_name: name,
-        email,
-        phone,
-        category,
-        dimensions,
-        special_requests: specialRequests,
-        status: 'pending'
+        customer_name: name, email, phone, category, dimensions,
+        special_requests: specialRequests, status: 'pending'
       }])
 
       setSubmitted(true)
@@ -83,15 +71,11 @@ export default function CustomOrders() {
         <div className="reveal">
           <div className="glass" style={{ padding: '4rem', boxShadow: '0 30px 60px rgba(0,0,0,0.5)' }}>
             {submitted ? (
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                style={{ textAlign: 'center', padding: '4rem 0' }}
-              >
+              <div style={{ textAlign: 'center', padding: '4rem 0' }} className="animate-fade-in">
                 <div style={{ color: 'var(--color-gold)', fontSize: '5rem', marginBottom: '2rem' }}>💎</div>
                 <h2 style={{ marginBottom: '1.5rem', letterSpacing: '2px' }}>REQUEST SUBMITTED</h2>
-                <p style={{ color: '#aaa', fontSize: '1.1rem', lineHeight: 1.8 }}>We have received your custom request. A consultant will contact you shortly to discuss your masterpiece.</p>
-              </motion.div>
+                <p style={{ color: '#aaa', fontSize: '1.1rem', lineHeight: 1.8 }}>We have received your custom request. A consultant will contact you shortly.</p>
+              </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 <div>
@@ -144,13 +128,12 @@ export default function CustomOrders() {
         <div className="reveal">
           <div style={{ position: 'sticky', top: '150px' }}>
             <h2 style={{ fontSize: '3rem', marginBottom: '4rem' }}>The <span className="text-gold">Curation</span></h2>
-            
             <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
               {[
-                { step: '01', title: 'CONCEPTUALIZATION', desc: 'Share your vision, color palette, and architectural requirements.' },
-                { step: '02', title: 'QUOTATION', desc: 'A custom investment proposal is generated for your unique piece.' },
-                { step: '03', title: 'CRAFTING', desc: 'Our artisans begin the pouring process with high-grade liquid glass.' },
-                { step: '04', title: 'CURATION', desc: 'Your masterpiece is secure-shipped with white-glove delivery service.' }
+                { step: '01', title: 'CONCEPTUALIZATION', desc: 'Share your vision and color palette.' },
+                { step: '02', title: 'QUOTATION', desc: 'A custom investment proposal is generated.' },
+                { step: '03', title: 'CRAFTING', desc: 'Our artisans begin the pouring process.' },
+                { step: '04', title: 'CURATION', desc: 'Your masterpiece is secure-shipped.' }
               ].map((item, idx) => (
                 <div key={idx} style={{ display: 'flex', gap: '2rem' }}>
                   <span style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--color-gold)', opacity: 0.5 }}>{item.step}</span>

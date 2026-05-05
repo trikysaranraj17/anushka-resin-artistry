@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import useReveal from '@/hooks/useReveal'
@@ -46,19 +45,17 @@ export default function Home() {
         
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle, transparent 20%, #050505 100%)', zIndex: 0 }}></div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+        <div 
+          className="animate-fade-in"
           style={{ maxWidth: '1000px', padding: '0 2rem', zIndex: 1 }}
         >
-          <motion.h1 
+          <h1 
             style={{ textTransform: 'uppercase', marginBottom: '1.5rem', fontWeight: 800, letterSpacing: '10px' }}
           >
             {settings.hero_title.split(' ').map((word, i) => (
               <span key={i} className={i === 1 ? 'text-gold' : ''}>{word} </span>
             ))}
-          </motion.h1>
+          </h1>
           <p style={{ 
             fontSize: '1.4rem', 
             color: '#eee', 
@@ -72,10 +69,10 @@ export default function Home() {
             {settings.hero_subtitle}
           </p>
           <div style={{ display: 'flex', gap: '2.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <motion.a whileHover={{ scale: 1.1 }} href="/products" className="btn-solid-gold">Collections</motion.a>
-            <motion.a whileHover={{ scale: 1.1 }} href="/custom-orders" className="btn-gold">Bespoke Art</motion.a>
+            <a href="/products" className="btn-solid-gold">Collections</a>
+            <a href="/custom-orders" className="btn-gold">Bespoke Art</a>
           </div>
-        </motion.div>
+        </div>
 
         <div style={{ position: 'absolute', bottom: '3rem', left: '50%', transform: 'translateX(-50%)', opacity: 0.5 }}>
           <div style={{ width: '1px', height: '100px', background: 'var(--gradient-gold)', animation: 'scroll-line 3s infinite' }}></div>
@@ -95,7 +92,7 @@ export default function Home() {
             { title: 'River Tables', img: 'https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=1000', link: '/products' },
             { title: 'Floral Preservation', img: 'https://images.unsplash.com/photo-1606041008023-472dfb5e530f?w=1000', link: '/products' }
           ].map((cat, idx) => (
-            <motion.div key={idx} className="reveal" whileHover={{ y: -20 }} style={{ textAlign: 'center' }}>
+            <div key={idx} className="reveal luxury-card" style={{ textAlign: 'center', padding: 0 }}>
               <div className="img-zoom-container" style={{ height: '500px', boxShadow: '0 30px 60px rgba(0,0,0,0.5)', borderRadius: '4px' }}>
                 <img src={cat.img} alt={cat.title} />
               </div>
@@ -103,7 +100,7 @@ export default function Home() {
                 <h3 style={{ fontSize: '1.4rem', textTransform: 'uppercase', letterSpacing: '4px', marginBottom: '2rem' }}>{cat.title}</h3>
                 <a href={cat.link} className="btn-gold" style={{ padding: '0.8rem 2rem', fontSize: '0.7rem' }}>Discover</a>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </section>

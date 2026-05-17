@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'ANUSHKA ARTISTRY | OFFICIAL SITE',
+  title: 'ANUSHKA ARTISTRY | OFFICIAL RESIN STORE',
   description: 'The pinnacle of luxury resin art. Handcrafted masterpieces, bespoke commissions, and floral preservation.',
 }
 

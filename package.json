@@ -1,6 +1,6 @@
 {
   "name": "anushka-resin-artistry",
-  "version": "1.0.0-RESCUE",
+  "version": "1.0.1-THEME-FIX",
   "private": true,
   "scripts": {
     "dev": "next dev",

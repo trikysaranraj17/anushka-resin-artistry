@@ -30,8 +30,8 @@ export default function Navbar() {
     <>
       <div 
         style={{ 
-          background: 'var(--gradient-gold)', 
-          color: 'var(--color-black)', 
+          background: 'var(--gradient-mixed)', 
+          color: 'var(--color-white)', 
           textAlign: 'center', 
           padding: '0.6rem', 
           fontSize: '0.7rem', 
@@ -51,7 +51,7 @@ export default function Navbar() {
         <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
           <img src="/logo.png?v=3" alt="Anushka" style={{ height: '45px', filter: 'drop-shadow(0 0 10px rgba(212,175,55,0.4))' }} />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <span style={{ fontSize: '1.4rem', fontWeight: 800, letterSpacing: '4px', lineHeight: 1 }} className="text-gold">
+            <span style={{ fontSize: '1.4rem', fontWeight: 800, letterSpacing: '4px', lineHeight: 1 }} className="text-purple">
               ANUSHKA
             </span>
             <span style={{ fontSize: '0.6rem', letterSpacing: '3px', opacity: 0.6, textTransform: 'uppercase' }}>Resin Artistry</span>
@@ -70,7 +70,7 @@ export default function Navbar() {
 
         {/* Admin Button & Mobile Toggle - Right Aligned */}
         <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '1.5rem', zIndex: 2200 }}>
-          <a href="/admin" className="btn-gold desktop-nav" style={{ padding: '0.7rem 1.5rem', fontSize: '0.65rem' }}>Admin Portal</a>
+          <a href="/admin" className="btn-purple desktop-nav" style={{ padding: '0.7rem 1.5rem', fontSize: '0.65rem' }}>Admin Portal</a>
           
           <button 
             className="mobile-menu-btn" 

@@ -42,11 +42,11 @@ export default function Cursor() {
           top: 0, left: 0,
           transform: `translate(${position.x - 5}px, ${position.y - 5}px)`,
           width: '10px', height: '10px',
-          backgroundColor: 'var(--color-gold)',
+          backgroundColor: 'var(--color-purple)',
           borderRadius: '50%',
           pointerEvents: 'none',
           zIndex: 9999,
-          boxShadow: '0 0 10px var(--color-gold)'
+          boxShadow: '0 0 10px var(--color-purple)'
         }}
       />
       {/* Cursor Trail */}
@@ -58,12 +58,12 @@ export default function Cursor() {
             top: 0, left: 0,
             transform: `translate(${point.x - 3}px, ${point.y - 3}px)`,
             width: '6px', height: '6px',
-            backgroundColor: 'var(--color-gold)',
+            backgroundColor: 'var(--color-purple)',
             borderRadius: '50%',
             pointerEvents: 'none',
             zIndex: 9998,
             opacity: index / trail.length,
-            boxShadow: '0 0 5px var(--color-gold)'
+            boxShadow: '0 0 5px var(--color-purple)'
           }}
         />
       ))}

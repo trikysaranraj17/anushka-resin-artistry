@@ -130,7 +130,9 @@ export default function AdminProducts() {
                     <option value="VARMALA PRESERVATION">Varmala Preservation</option>
                     <option value="Name Boards">Name Boards</option>
                     <option value="Tables">Resin Tables</option>
+                    <option value="Keychains">Keychains</option>
                     <option value="Wall Art">Wall Art</option>
+                    <option value="Preservation">Preservation Art</option>
                   </select>
                 </div>
               </div>

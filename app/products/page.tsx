@@ -42,8 +42,8 @@ export default function Products() {
   return (
     <div style={{ padding: '12rem 0' }}>
       <div className="reveal" style={{ textAlign: 'center', marginBottom: '8rem' }}>
-        <h1 style={{ letterSpacing: '12px', textTransform: 'uppercase' }}>THE <span className="text-gold">COLLECTION</span></h1>
-        <div style={{ width: '40px', height: '1px', background: 'var(--color-gold)', margin: '2rem auto' }}></div>
+        <h1 style={{ letterSpacing: '12px', textTransform: 'uppercase' }}>THE <span className="text-purple">COLLECTION</span></h1>
+        <div style={{ width: '40px', height: '1px', background: 'var(--gradient-mixed)', margin: '2rem auto' }}></div>
         <p style={{ color: '#888', fontSize: '1.1rem', letterSpacing: '2px', fontStyle: 'italic' }}>
           Exquisite resin masterpieces handcrafted for the discerning eye.
         </p>
@@ -83,15 +83,15 @@ export default function Products() {
                 ) : (
                   <img src={product.image_url} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 )}
-                <div style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'var(--color-gold)', color: 'black', padding: '0.3rem 0.8rem', fontSize: '0.6rem', fontWeight: 800, letterSpacing: '2px' }}>
+                <div style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'var(--gradient-mixed)', color: 'white', padding: '0.3rem 0.8rem', fontSize: '0.6rem', fontWeight: 800, letterSpacing: '2px', borderRadius: '4px' }}>
                   {product.category}
                 </div>
               </div>
               <div style={{ padding: '3rem', textAlign: 'center' }}>
-                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', letterSpacing: '3px' }}>{product.name}</h3>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', letterSpacing: '3px' }}>{product.title || product.name}</h3>
                 <p style={{ color: '#666', fontSize: '0.9rem', marginBottom: '2rem', lineHeight: 1.8 }}>{product.description}</p>
                 <div style={{ fontSize: '1.4rem', color: 'var(--color-gold)', fontWeight: 800, marginBottom: '2.5rem' }}>₹{product.price?.toLocaleString()}</div>
-                <a href={`https://wa.me/919840706312?text=Inquiry about ${product.name}`} target="_blank" className="btn-gold" style={{ padding: '1rem 2.5rem' }}>INQUIRE NOW</a>
+                <a href={`https://wa.me/919840706312?text=Inquiry about ${product.title || product.name}`} target="_blank" className="btn-purple" style={{ padding: '1rem 2.5rem' }}>INQUIRE NOW</a>
               </div>
             </div>
           ))

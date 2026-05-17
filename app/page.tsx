@@ -53,7 +53,7 @@ export default function Home() {
             style={{ textTransform: 'uppercase', marginBottom: '1.5rem', fontWeight: 800, letterSpacing: '10px' }}
           >
             {settings.hero_title.split(' ').map((word, i) => (
-              <span key={i} className={i === 1 ? 'text-gold' : ''}>{word} </span>
+              <span key={i} className={i % 2 === 0 ? 'text-gold' : 'text-purple'}>{word} </span>
             ))}
           </h1>
           <p style={{ 
@@ -68,9 +68,16 @@ export default function Home() {
           }}>
             {settings.hero_subtitle}
           </p>
-          <div style={{ display: 'flex', gap: '2.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="/products" className="btn-solid-gold">Collections</a>
+          <div style={{ display: 'flex', gap: '2.5rem', justifyContent: 'center', flexWrap: 'wrap', alignItems: 'center' }}>
+            <a href="/products" className="btn-solid-purple">Collections</a>
             <a href="/custom-orders" className="btn-gold">Customization Art</a>
+            <a href="https://instagram.com/anushka_resin_artistry" target="_blank" className="btn-purple" style={{ 
+              display: 'flex', alignItems: 'center', gap: '1rem', 
+              boxShadow: '0 0 20px rgba(122,0,204,0.4)',
+              border: '1px solid var(--color-purple)'
+            }}>
+              <span style={{ fontSize: '1.2rem' }}>📸</span> Visit Our Page
+            </a>
           </div>
         </div>
 
@@ -82,8 +89,8 @@ export default function Home() {
       {/* 2. Collections Overview */}
       <section className="container" style={{ padding: '8rem 2rem' }}>
         <div className="reveal" style={{ textAlign: 'center', marginBottom: '6rem' }}>
-          <h2 style={{ textTransform: 'uppercase', letterSpacing: '6px' }}>Masterpiece <span className="text-gold">Galleries</span></h2>
-          <div style={{ width: '60px', height: '1px', background: 'var(--color-gold)', margin: '2rem auto' }}></div>
+          <h2 style={{ textTransform: 'uppercase', letterSpacing: '6px' }}><span className="text-gold">Masterpiece</span> <span className="text-purple">Galleries</span></h2>
+          <div style={{ width: '60px', height: '1px', background: 'var(--gradient-mixed)', margin: '2rem auto' }}></div>
         </div>
 
         <div className="product-grid" style={{ gap: '6rem' }}>

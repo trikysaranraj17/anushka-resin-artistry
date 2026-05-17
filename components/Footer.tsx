@@ -20,9 +20,31 @@ export default function Footer() {
   if (pathname?.includes('/admin') || pathname?.includes('/login')) return null
 
   return (
-    <footer style={{ background: '#050505', padding: '15rem 0 5rem 0', borderTop: '1px solid rgba(212, 175, 55, 0.1)', position: 'relative', overflow: 'hidden' }}>
-      {/* Background Glow */}
-      <div style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', width: '600px', height: '300px', background: 'radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%)', filter: 'blur(50px)', zIndex: 0 }}></div>
+    <footer style={{ background: '#0A0A0A', padding: '15rem 0 5rem 0', borderTop: '1px solid rgba(212, 175, 55, 0.2)', position: 'relative', overflow: 'hidden' }}>
+      {/* Luxury Resin Ocean Animation */}
+      <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', zIndex: 0, pointerEvents: 'none' }}>
+        <div style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', width: '100%', height: '500px', background: 'radial-gradient(ellipse at bottom, rgba(125, 60, 152, 0.4) 0%, transparent 70%)', filter: 'blur(80px)', zIndex: 1 }} />
+        
+        <div className="wave-layer wave-layer-1" style={{ position: 'absolute', bottom: '-15%', left: '-50%', width: '200%', height: '400px', background: 'radial-gradient(ellipse at top, #2A0A2F, transparent 80%)', borderRadius: '50%', filter: 'blur(30px)', opacity: 0.8, zIndex: 2 }}></div>
+        <div className="wave-layer wave-layer-2" style={{ position: 'absolute', bottom: '-25%', left: '-30%', width: '150%', height: '350px', background: 'radial-gradient(ellipse at top, #5B2C83, transparent 70%)', borderRadius: '50%', filter: 'blur(40px)', opacity: 0.7, zIndex: 3 }}></div>
+        <div className="wave-layer wave-layer-3" style={{ position: 'absolute', bottom: '-35%', left: '-60%', width: '250%', height: '300px', background: 'radial-gradient(ellipse at top, #7D3C98, transparent 60%)', borderRadius: '50%', filter: 'blur(50px)', opacity: 0.6, zIndex: 4 }}></div>
+
+        {/* Dynamic Gold Particles */}
+        {Array.from({ length: 40 }).map((_, i) => (
+          <div 
+            key={i} 
+            className="gold-particle"
+            style={{
+              left: `${Math.random() * 100}%`,
+              bottom: `${Math.random() * 50}%`,
+              width: `${Math.random() * 4 + 2}px`,
+              height: `${Math.random() * 4 + 2}px`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${Math.random() * 4 + 4}s`
+            }}
+          />
+        ))}
+      </div>
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '8rem', marginBottom: '8rem', textAlign: 'center' }}>

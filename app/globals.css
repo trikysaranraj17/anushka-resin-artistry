@@ -152,6 +152,31 @@ h2 { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 600; margin-bottom: 1.5re
 }
 
 /* Premium Buttons */
+.glitter-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(var(--color-blue-light), rgba(0, 242, 254, .3) 2px, transparent 4px),
+    radial-gradient(var(--color-purple-light), rgba(169, 64, 255, .3) 1px, transparent 3px),
+    radial-gradient(var(--color-gold), rgba(212, 175, 55, .4) 2px, transparent 4px);
+  background-size: 150px 150px, 100px 100px, 200px 200px;
+  background-position: 0 0, 40px 60px, 130px 270px;
+  animation: starSparkle 3s linear infinite alternate;
+  opacity: 0.6;
+  z-index: 0;
+}
+
+@keyframes starSparkle {
+  0% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+  100% { opacity: 0.2; transform: scale(1); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+}
 .btn-gold {
   display: inline-block;
   background: transparent;

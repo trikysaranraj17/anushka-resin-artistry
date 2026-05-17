@@ -44,10 +44,11 @@ export default function Home() {
         />
         
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle, transparent 20%, #050505 100%)', zIndex: 0 }}></div>
+        <div className="glitter-overlay"></div>
 
         <div 
-          className="animate-fade-in"
-          style={{ maxWidth: '1000px', padding: '0 2rem', zIndex: 1 }}
+          className="animate-fade-in hero-content"
+          style={{ maxWidth: '1000px', padding: '0 2rem', zIndex: 10 }}
         >
           <h1 
             style={{ textTransform: 'uppercase', marginBottom: '1.5rem', fontWeight: 800, letterSpacing: '10px' }}

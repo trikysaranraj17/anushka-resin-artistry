@@ -9,7 +9,7 @@ export default function Products() {
   const [loading, setLoading] = useState(true)
   const [errorInfo, setErrorInfo] = useState<string | null>(null)
   const supabase = createClient()
-  useReveal()
+  useReveal(products)
 
   useEffect(() => {
     async function fetchProducts() {

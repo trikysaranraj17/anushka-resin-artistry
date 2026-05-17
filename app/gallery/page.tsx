@@ -13,7 +13,7 @@ export default function Gallery() {
   })
   const supabase = createClient()
   
-  useReveal()
+  useReveal(media)
 
   useEffect(() => {
     async function fetchContent() {

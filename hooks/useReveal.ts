@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-export default function useReveal() {
+export default function useReveal(dependency?: any) {
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1
@@ -20,5 +20,5 @@ export default function useReveal() {
     return () => {
       revealElements.forEach((el) => observer.unobserve(el))
     }
-  }, [])
+  }, [dependency])
 }

@@ -25,9 +25,9 @@
   --glow-purple: 0 0 35px rgba(122, 0, 204, 0.45);
   --glow-blue: 0 0 35px rgba(0, 242, 254, 0.45);
   --gradient-gold: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-  --gradient-purple: linear-gradient(135deg, #3D0066, #A940FF, #7A00CC);
-  --gradient-blue: linear-gradient(135deg, #0077B6, #00F2FE, #00B4D8);
-  --gradient-mixed: linear-gradient(135deg, #7A00CC, #00F2FE, #0077B6);
+  --gradient-purple: linear-gradient(135deg, #2A0A2F 0%, #7D3C98 25%, #5B2C83 50%, #7D3C98 75%, #2A0A2F 100%);
+  --gradient-blue: linear-gradient(135deg, #0077B6 0%, #00F2FE 25%, #00B4D8 50%, #00F2FE 75%, #0077B6 100%);
+  --gradient-mixed: linear-gradient(135deg, #5B2C83 0%, #00F2FE 25%, #7D3C98 50%, #00F2FE 75%, #5B2C83 100%);
 }
 
 * {

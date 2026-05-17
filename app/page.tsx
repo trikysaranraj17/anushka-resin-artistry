@@ -6,7 +6,7 @@ import useReveal from '@/hooks/useReveal'
 
 export default function Home() {
   const [settings, setSettings] = useState({
-    hero_title: 'LIQUID LUXURY',
+    hero_title: 'ANUSHKA RESIN ARTISTRY',
     hero_subtitle: 'Handcrafted resin masterpieces that redefine the boundaries of modern elegance.',
     hero_video: 'https://cdn.shopify.com/videos/c/o/v/6f7c6f0d9c4e4b5f8c1e8b3b3b3b3b3b.mp4'
   })
@@ -24,8 +24,8 @@ export default function Home() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       {/* 1. Cinematic Hero Section with Dynamic Content */}
-      <section style={{ 
-        height: '100vh', 
+      <section style={{
+        height: '100vh',
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
@@ -33,34 +33,34 @@ export default function Home() {
         textAlign: 'center',
         overflow: 'hidden'
       }}>
-        <video 
+        <video
           key={settings.hero_video}
-          autoPlay 
-          muted 
-          loop 
+          autoPlay
+          muted
+          loop
           playsInline
           className="video-bg"
-          src={settings.hero_video} 
+          src={settings.hero_video}
         />
-        
+
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle, transparent 20%, #050505 100%)', zIndex: 0 }}></div>
 
-        <div 
+        <div
           className="animate-fade-in"
           style={{ maxWidth: '1000px', padding: '0 2rem', zIndex: 1 }}
         >
-          <h1 
+          <h1
             style={{ textTransform: 'uppercase', marginBottom: '1.5rem', fontWeight: 800, letterSpacing: '10px' }}
           >
             {settings.hero_title.split(' ').map((word, i) => (
               <span key={i} className={i % 2 === 0 ? 'text-blue' : 'text-purple'}>{word} </span>
             ))}
           </h1>
-          <p style={{ 
-            fontSize: '1.4rem', 
-            color: '#eee', 
-            maxWidth: '700px', 
-            margin: '0 auto 4rem auto', 
+          <p style={{
+            fontSize: '1.4rem',
+            color: '#eee',
+            maxWidth: '700px',
+            margin: '0 auto 4rem auto',
             fontFamily: 'var(--font-serif)',
             fontStyle: 'italic',
             letterSpacing: '3px',
@@ -71,8 +71,8 @@ export default function Home() {
           <div style={{ display: 'flex', gap: '2.5rem', justifyContent: 'center', flexWrap: 'wrap', alignItems: 'center' }}>
             <a href="/products" className="btn-solid-purple">Collections</a>
             <a href="/custom-orders" className="btn-gold">Customization Art</a>
-            <a href="https://instagram.com/anushka_resin_artistry" target="_blank" className="btn-purple" style={{ 
-              display: 'flex', alignItems: 'center', gap: '1rem', 
+            <a href="https://instagram.com/anushka_resin_artistry" target="_blank" className="btn-purple" style={{
+              display: 'flex', alignItems: 'center', gap: '1rem',
               boxShadow: '0 0 20px rgba(122,0,204,0.4)',
               border: '1px solid var(--color-purple)'
             }}>

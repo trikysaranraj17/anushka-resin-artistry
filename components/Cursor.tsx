@@ -35,6 +35,21 @@ export default function Cursor() {
 
   return (
     <>
+      {/* Dynamic Ambient Background Aura */}
+      <div 
+        style={{
+          position: 'fixed',
+          top: 0, left: 0,
+          transform: `translate(${position.x - 400}px, ${position.y - 400}px)`,
+          width: '800px', height: '800px',
+          background: 'radial-gradient(circle, rgba(125, 60, 152, 0.08), transparent 60%)',
+          borderRadius: '50%',
+          pointerEvents: 'none',
+          zIndex: -9999,
+          transition: 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
+        }}
+      />
+      
       {/* Main Cursor Dot */}
       <div 
         style={{

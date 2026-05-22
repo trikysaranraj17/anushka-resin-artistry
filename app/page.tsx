@@ -53,7 +53,7 @@ export default function Home() {
             style={{ textTransform: 'uppercase', marginBottom: '1.5rem', fontWeight: 800, letterSpacing: '10px' }}
           >
             {settings.hero_title.split(' ').map((word, i) => (
-              <span key={i} className={i % 2 === 0 ? 'text-blue' : 'text-purple'}>{word} </span>
+              <span key={i} className="text-3d-luxury-gold" style={{ display: 'inline-block', marginRight: '1rem' }}>{word} </span>
             ))}
           </h1>
           <p style={{

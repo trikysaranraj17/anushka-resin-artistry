@@ -24,6 +24,17 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
   if (pathname?.includes('/admin') || pathname?.includes('/login')) return null
 
   return (
@@ -47,14 +58,14 @@ export default function Navbar() {
         {announcement}
       </div>
 
-      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`} style={{ top: '2.5rem', display: 'grid', gridTemplateColumns: 'auto 1fr auto', alignItems: 'center', gap: '2rem' }}>
+      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
         <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
-          <img src="/logo.png?v=3" alt="Anushka" style={{ height: '45px', filter: 'drop-shadow(0 0 10px rgba(212,175,55,0.4))' }} />
+          <img src="/logo.png?v=3" alt="Anushka" className="navbar-logo" />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <span style={{ fontSize: '1.4rem', fontWeight: 800, letterSpacing: '4px', lineHeight: 1 }} className="text-purple">
+            <span className="brand-name text-purple">
               ANUSHKA
             </span>
-            <span style={{ fontSize: '0.6rem', letterSpacing: '3px', opacity: 0.6, textTransform: 'uppercase' }}>Resin Artistry</span>
+            <span className="brand-subtitle">Resin Artistry</span>
           </div>
         </a>
 
@@ -95,7 +106,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Navigation Overlay - Flawless Version */}
+      {/* Mobile Navigation Overlay - Scrollable & Responsive */}
       {isOpen && (
         <div 
           className="mobile-nav-overlay active"
@@ -105,12 +116,14 @@ export default function Navbar() {
             backdropFilter: 'blur(30px)', 
             zIndex: 3000,
             display: 'flex', flexDirection: 'column',
-            alignItems: 'center', justifyContent: 'center',
-            gap: '2.5rem',
+            alignItems: 'center', justifyContent: 'flex-start',
+            padding: '7rem 2rem 3rem 2rem',
+            gap: '2rem',
+            overflowY: 'auto',
             animation: 'fadeInUp 0.5s ease forwards'
           }}
         >
-          <button onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: '3rem', right: '2rem', background: 'none', border: 'none', color: 'var(--color-gold)', fontSize: '2rem' }}>✕</button>
+          <button onClick={() => setIsOpen(false)} style={{ position: 'fixed', top: '3rem', right: '2rem', background: 'none', border: 'none', color: 'var(--color-gold)', fontSize: '2rem', zIndex: 3100 }}>✕</button>
           
           <a href="/" className="mobile-nav-link" style={{ fontSize: '2rem', fontWeight: 800, letterSpacing: '4px' }} onClick={() => setIsOpen(false)}>HOME</a>
           <a href="/products" className="mobile-nav-link" style={{ fontSize: '2rem', fontWeight: 800, letterSpacing: '4px' }} onClick={() => setIsOpen(false)}>COLLECTIONS</a>

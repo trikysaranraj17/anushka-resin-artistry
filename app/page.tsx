@@ -76,7 +76,7 @@ export default function Home() {
               boxShadow: '0 0 20px rgba(122,0,204,0.4)',
               border: '1px solid var(--color-purple)'
             }}>
-              <span style={{ fontSize: '1.2rem' }}>📸</span> Visit Our Page
+              <span style={{ fontSize: '1.2em' }}>📸</span> Visit Our Page
             </a>
           </div>
         </div>

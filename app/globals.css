@@ -317,7 +317,7 @@ h2 { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 600; margin-bottom: 1.5re
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 2rem;
-  z-index: 2000;
+  z-index: 2500;
   transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -359,7 +359,11 @@ h2 { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 600; margin-bottom: 1.5re
   h1 { font-size: 1.8rem !important; letter-spacing: 5px !important; }
   h2 { font-size: 1.4rem !important; }
   p { font-size: 0.85rem !important; line-height: 1.6 !important; }
-  .btn-gold, .btn-solid-gold { padding: 0.8rem 1.5rem !important; font-size: 0.65rem !important; }
+  .btn-gold, .btn-solid-gold, .btn-purple, .btn-solid-purple { 
+    padding: 0.8rem 1.5rem !important; 
+    font-size: 0.65rem !important; 
+    letter-spacing: 2px !important;
+  }
   
   .navbar {
     top: 3.5rem !important;

@@ -65,7 +65,7 @@ export async function middleware(request: NextRequest) {
     }
 
     // Check if user is in admin_users table or is the main admin
-    if (user.email === 'deepaksabari28@gmail.com') {
+    if (user.email?.toLowerCase() === 'jayachandran.r0110@gmail.com') {
       // Allow access instantly
     } else {
       const { data: adminUser, error } = await supabase

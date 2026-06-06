@@ -68,7 +68,7 @@ export default function Home() {
           }}>
             {settings.hero_subtitle}
           </p>
-          <div style={{ display: 'flex', gap: '2.5rem', justifyContent: 'center', flexWrap: 'wrap', alignItems: 'center' }}>
+          <div className="hero-buttons" style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', alignItems: 'center', width: '100%' }}>
             <a href="/products" className="btn-solid-purple">Collections</a>
             <a href="/custom-orders" className="btn-gold">Customization Art</a>
             <a href="https://instagram.com/anushka_resin_artistry" target="_blank" className="btn-purple" style={{
@@ -93,7 +93,7 @@ export default function Home() {
           <div style={{ width: '60px', height: '1px', background: 'var(--gradient-mixed)', margin: '2rem auto' }}></div>
         </div>
 
-        <div className="product-grid" style={{ gap: '6rem' }}>
+        <div className="product-grid">
           {[
             { title: 'Signature Clocks', img: 'https://images.unsplash.com/photo-1600121848594-d8644e57abab?w=1000', link: '/products' },
             { title: 'River Tables', img: 'https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=1000', link: '/products' },

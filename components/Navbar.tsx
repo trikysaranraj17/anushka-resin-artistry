@@ -59,9 +59,9 @@ export default function Navbar() {
       </div>
 
       <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
-        <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
+        <a href="/" className="brand-link" style={{ display: 'flex', alignItems: 'center' }}>
           <img src="/logo.png?v=3" alt="Anushka" className="navbar-logo" />
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <div className="brand-text-container" style={{ display: 'flex', flexDirection: 'column' }}>
             <span className="brand-name text-purple">
               ANUSHKA
             </span>

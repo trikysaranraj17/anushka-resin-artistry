@@ -377,17 +377,22 @@ h2 { font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 600; margin-bottom: 1.5re
 }
 
 @media (max-width: 480px) {
+  .brand-link { gap: 0.5rem; }
   .brand-name {
     font-size: 1.1rem !important;
-    letter-spacing: 2px !important;
+    letter-spacing: 1px !important;
   }
   .brand-subtitle {
     font-size: 0.5rem !important;
-    letter-spacing: 1.5px !important;
+    letter-spacing: 1px !important;
   }
   .navbar-logo {
-    height: 35px !important;
+    height: 30px !important;
   }
+}
+
+@media (min-width: 481px) {
+  .brand-link { gap: 1.2rem; }
 }
 
 @media (min-width: 1025px) {

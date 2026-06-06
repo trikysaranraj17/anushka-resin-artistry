@@ -95,9 +95,9 @@ export default function Home() {
 
         <div className="product-grid">
           {[
-            { title: 'Signature Clocks', img: 'https://images.unsplash.com/photo-1600121848594-d8644e57abab?w=1000', link: '/products' },
-            { title: 'River Tables', img: 'https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=1000', link: '/products' },
-            { title: 'Floral Preservation', img: 'https://images.unsplash.com/photo-1606041008023-472dfb5e530f?w=1000', link: '/products' }
+            { title: 'Signature Clocks', img: 'https://vurkruawfkyzyujdqxzm.supabase.co/storage/v1/object/public/media/0.6777948743896702.jpeg', link: '/products' },
+            { title: 'River Tables', img: 'https://vurkruawfkyzyujdqxzm.supabase.co/storage/v1/object/public/media/0.45158985788487516.jpeg', link: '/products' },
+            { title: 'Floral Preservation', img: 'https://vurkruawfkyzyujdqxzm.supabase.co/storage/v1/object/public/media/0.8996505339588928.jpeg', link: '/products' }
           ].map((cat, idx) => (
             <div key={idx} className="reveal luxury-card" style={{ textAlign: 'center', padding: 0 }}>
               <div className="img-zoom-container" style={{ height: '500px', boxShadow: '0 30px 60px rgba(0,0,0,0.5)', borderRadius: '4px' }}>

@@ -150,7 +150,10 @@ export default function AdminMedia() {
                   )}
                   <div style={{ padding: '0.8rem', background: '#0a0a0a' }}>
                     <p style={{ fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.5rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.title}</p>
-                    <button onClick={() => deleteMedia(item.id, item.url)} style={{ color: '#F44336', background: 'none', border: 'none', fontSize: '0.7rem', cursor: 'pointer', padding: 0 }}>Delete</button>
+                    <div style={{ display: 'flex', gap: '1rem' }}>
+                      <button onClick={() => { navigator.clipboard.writeText(item.url); alert('URL Copied to clipboard!') }} style={{ color: '#2196F3', background: 'none', border: 'none', fontSize: '0.7rem', cursor: 'pointer', padding: 0 }}>Copy URL</button>
+                      <button onClick={() => deleteMedia(item.id, item.url)} style={{ color: '#F44336', background: 'none', border: 'none', fontSize: '0.7rem', cursor: 'pointer', padding: 0 }}>Delete</button>
+                    </div>
                   </div>
                 </div>
               ))}
